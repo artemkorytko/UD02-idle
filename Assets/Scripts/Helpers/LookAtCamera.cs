@@ -10,6 +10,6 @@ public class LookAtCamera : MonoBehaviour
         var cameraPos = FindObjectOfType<Camera>().transform.position;
         var lookDirection = (transform.position - cameraPos);
 
-        transform.rotation = Quaternion.identity.normalized;
+        transform.rotation = Quaternion.LookRotation(lookDirection);
     }
 }
