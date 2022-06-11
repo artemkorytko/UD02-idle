@@ -2,13 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LookAtCamera : MonoBehaviour
+namespace Helpers
 {
-    private void Start()
+    public class LookAtCamera : MonoBehaviour
     {
-        var cameraPosition = FindObjectOfType<Camera>().transform.position;
-        var lookDirecrion = (transform.position - cameraPosition).normalized;
+        private void Start()
+        {
+            var cameraPosition = FindObjectOfType<Camera>().transform.position;
+            var lookDirecrion = (transform.position - cameraPosition).normalized;
 
-        transform.rotation = Quaternion.LookRotation(lookDirecrion);
+            transform.rotation = Quaternion.LookRotation(lookDirecrion);
+        }
     }
 }
+
