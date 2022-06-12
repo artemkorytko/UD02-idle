@@ -261,6 +261,7 @@ GameObject:
   - component: {fileID: 8046543415040287589}
   - component: {fileID: 1419353249946199048}
   - component: {fileID: 8560801281567564255}
+  - component: {fileID: 5204545924258695808}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -371,6 +372,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5204545924258695808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4917646004101135695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c04bc12cdf4833944b433b2279f8b421, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5078449314416947350
 GameObject:
   m_ObjectHideFlags: 0
@@ -380,6 +393,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3271599754873352407}
+  - component: {fileID: 3098562010808413914}
   m_Layer: 0
   m_Name: BuildPlace
   m_TagString: Untagged
@@ -405,6 +419,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3098562010808413914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5078449314416947350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67b167959fb666c42bb51c234bd72b86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allBuildingsConfig: {fileID: 11400000, guid: 9696aab75a02275448389cfee6323adb, type: 2}
+  buildingRoot: {fileID: 3271599754873352407}
 --- !u!1 &5703234791957529913
 GameObject:
   m_ObjectHideFlags: 0
