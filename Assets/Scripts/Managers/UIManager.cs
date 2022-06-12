@@ -1,19 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace Manager
+namespace Managers
 {
-    public class UIManager : MonoBehaviour
+    public class UiManager : MonoBehaviour
     {
         [SerializeField] private GameObject mainPanel;
         [SerializeField] private GameObject gamePanel;
+        private int _game;
 
         public void SwitchScreen(bool isGameScreen)
         {
             gamePanel.SetActive(isGameScreen);
-            mainPanel.SetActive(isGameScreen);
+            mainPanel.SetActive(!isGameScreen);
         }
     }
 }
-

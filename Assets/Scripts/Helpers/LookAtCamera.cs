@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 namespace Helpers
@@ -9,10 +8,9 @@ namespace Helpers
         private void Start()
         {
             var cameraPosition = FindObjectOfType<Camera>().transform.position;
-            var lookDirecrion = (transform.position - cameraPosition).normalized;
+            var lookDirection = (transform.position - cameraPosition).normalized;
 
-            transform.rotation = Quaternion.LookRotation(lookDirecrion);
+            transform.rotation = Quaternion.LookRotation(lookDirection);
         }
     }
 }
-

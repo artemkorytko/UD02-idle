@@ -1,26 +1,27 @@
-using Manager;
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using DefaultNamespace.Configs;
+using Managers;
 using UnityEngine;
 
 namespace Levels
 {
     public class UpgradableBuilding : MonoBehaviour
     {
-        [SerializeField] private UpgradeBuildingConfig config;
+        [SerializeField] private UpgradableBuildingConfig config;
         [SerializeField] private Transform buildingRoot;
 
         private int _currentLevel;
         private GameObject _currentModel;
 
-        public bool IsUnLock { get; private set; }
+        public bool IsUnlock { get; private set; }
 
         public int CurrentLevel => _currentLevel;
 
-        public void Initialaze(BuildingData buildingData)
+        public event Action<int> ProcessCompleted;
+
+        public void Initialize(BuildingData data)
         {
 
         }
     }
 }
-

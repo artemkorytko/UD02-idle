@@ -1,30 +1,37 @@
-using Manager;
-using System.Collections;
 using System.Collections.Generic;
+using Managers;
 using UnityEngine;
 
 namespace Levels
 {
     public class LevelController : MonoBehaviour
     {
-        [SerializeField] private UpgradeBuildingConfig[] buildings;
+        [SerializeField] private UpgradableBuilding[] buildings;
 
         public void Initialize(GameData gameData)
         {
             if (gameData.BuildingData == null) return;
 
-            var data =gameData.BuildingData;
+            var data = gameData.BuildingData;
 
-            foreach(var building in buildings)
+            for (int i = 0; i < buildings.Length; i++)
             {
-                building.In
+                if (i >= data.Count) break;
+
+                buildings[i].Initialize(data[i]);
             }
         }
 
         public List<BuildingData> GetBuildingData()
         {
+            var list = new List<BuildingData>();
 
+            for (int i = 0; i < buildings.Length; i++)
+            {
+                list.Add(new BuildingData(buildings[i].IsUnlock, buildings[i].CurrentLevel));
+            }
+
+            return list;
         }
     }
-}
-
+} 

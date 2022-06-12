@@ -1,55 +1,32 @@
-using Config;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 
-namespace Config
+namespace DefaultNamespace.Configs
 {
-    [CreateAssetMenu(fileName = "UpgradeConfig", menuName = "Config/UpgradeConfig")]
-    public class UpgradeBuildingConfig : ScriptableObject
+    [CreateAssetMenu(fileName = "UpgradableBuildingConfig", menuName = "Config/UpgradableBuildingConfig", order = 0)]
+    public class UpgradableBuildingConfig : ScriptableObject
     {
         [SerializeField] private float unlockPrice = 30;
-        [SerializeField] private float startUpgraideCost = 10;
-        [SerializeField] private float costMulriplayer = 1.7f;
+        [SerializeField] private float startUpgradeCost = 10;
+        [SerializeField] private float costMultiplier = 1.7f;
         [SerializeField] private UpgradeConfig[] upgrades;
 
         public float UnlockPrice => unlockPrice;
-        public float StartUpgraideCost => startUpgraideCost;
-        public float CostMulriplayer => costMulriplayer;
+
+        public float StartUpgradeCost => startUpgradeCost;
+
+        public float CostMultiplier => costMultiplier;
+
         public UpgradeConfig GetUpgrade(int index)
         {
             if (index < 0 || index >= upgrades.Length)
                 return null;
+
             return upgrades[index];
         }
 
-        public bool IsUpgraide(int index)
+        public bool IsUpgradeExist(int index)
         {
             return index >= 0 && index < upgrades.Length;
         }
-    }
-}
-[CreateAssetMenu(fileName = "UpgradeConfig", menuName = "Config/UpgradeConfig")]
-public class UpgradeBuildingConfig : ScriptableObject
-{
-    [SerializeField] private float unlockPrice = 30;
-    [SerializeField] private float startUpgraideCost=10;
-    [SerializeField] private float costMulriplayer=1.7f;
-    [SerializeField] private UpgradeConfig[] upgrades;
-
-    public float UnlockPrice => unlockPrice;
-    public float StartUpgraideCost => startUpgraideCost;
-    public float CostMulriplayer => costMulriplayer;
-    public UpgradeConfig GetUpgrade(int index)
-    {
-        if(index < 0 || index >= upgrades.Length)
-            return null;
-        return upgrades[index];
-    }
-
-    public bool IsUpgraide(int index)
-    {
-        return index >=0 && index < upgrades.Length;
     }
 }
