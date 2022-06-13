@@ -4,6 +4,8 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.Generic;
 
+
+
 public class SaveSystem : MonoBehaviour
 {
     public void SaveData(GameData gameData)
@@ -47,6 +49,7 @@ public class GameData
             _BuildingData.Add(new BuildingData());
         }
     }
+    
     [Serializable]
     public class BuildingData
     {

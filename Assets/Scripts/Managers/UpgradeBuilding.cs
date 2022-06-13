@@ -29,6 +29,11 @@ public class UpgradeBuilding : MonoBehaviour
 
     public void Initialize(GameData.BuildingData data)
     {
+        if (data is null)
+        {
+            throw new ArgumentNullException(nameof(data));
+        }
+
         IsUnLook = true;
         
     }
