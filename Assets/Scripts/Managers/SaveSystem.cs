@@ -6,12 +6,12 @@ using UnityEngine;
 
 namespace Managers
 {
+  
     public class SaveSystem : MonoBehaviour
     {
-        private static readonly string Path = Application.persistentDataPath + "/gameData.data";
-        public void SaveData(GameData gameData)
+        public void SaveData(GameData gameData) 
         {
-            FileStream dataStream = new FileStream(Path, FileMode.OpenOrCreate);
+            FileStream dataStream = new FileStream(Application.persistentDataPath + "/gameData.data", FileMode.OpenOrCreate);
             BinaryFormatter converter = new BinaryFormatter();
             converter.Serialize(dataStream, gameData);
             dataStream.Close();
@@ -19,9 +19,9 @@ namespace Managers
 
         public GameData LoadData()
         {
-            if (File.Exists(Path))
+            if (File.Exists(Application.persistentDataPath + "/gameData.data"))
             {
-                FileStream dataStream = new FileStream(Path, FileMode.Open);
+                FileStream dataStream = new FileStream(Application.persistentDataPath + "/gameData.data", FileMode.Open);
                 BinaryFormatter converter = new BinaryFormatter();
                 GameData data = converter.Deserialize(dataStream) as GameData;
                 dataStream.Close();
