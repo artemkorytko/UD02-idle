@@ -1,5 +1,8 @@
 ﻿using System.Collections;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class UpgradableBuilding : MonoBehaviour
 {
@@ -41,20 +44,24 @@ public class UpgradableBuilding : MonoBehaviour
         {
             _currentLevel++;
             GameManager.Instance.Money -= GetCost(_currentLevel);
-            SetModel(_currentLevel);
+            StartCoroutine(SetModel(_currentLevel));
             UpdateButtonState();
-        }   
+        }
     }
 
-    private void SetModel(int level)
+    private IEnumerator SetModel(int level)
     {
         UpgradeConfig upgradeConfig = _config.GetUpgrade(level);
 
         if (_currentModel != null)
         {
-            Destroy(_currentModel);
+            Addressables.ReleaseInstance(_currentModel);
         }
-        _currentModel = Instantiate(upgradeConfig.Model, _modelsContainer);
+
+        AsyncOperationHandle<GameObject> handler = Addressables.InstantiateAsync(upgradeConfig.Model, _modelsContainer);
+        
+        yield return handler;
+        _currentModel = handler.Result;
         _currentModel.transform.localPosition = Vector3.zero;
 
         if (_timer == null)
@@ -83,7 +90,7 @@ public class UpgradableBuilding : MonoBehaviour
 
     private IEnumerator Timer()
     {
-        while(true)
+        while (true)
         {
             yield return new WaitForSeconds(1f);
             OnProcessFinished?.Invoke(_config.GetUpgrade(_currentLevel).ProcessResuilt);
@@ -92,6 +99,6 @@ public class UpgradableBuilding : MonoBehaviour
 
     private float GetCost(int level)
     {
-        return (float)System.Math.Round(_config.StartUpgeadeCost * Mathf.Pow(_config.Multiplier, level), 2);
+        return (float) System.Math.Round(_config.StartUpgeadeCost * Mathf.Pow(_config.Multiplier, level), 2);
     }
 }
