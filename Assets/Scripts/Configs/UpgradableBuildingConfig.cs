@@ -28,6 +28,6 @@ public class UpgradableBuildingConfig : ScriptableObject
 
     public int MaxUpgrade()
     {
-        return upgrades.Length;
+        return upgrades.Length - 1;
     }
 }

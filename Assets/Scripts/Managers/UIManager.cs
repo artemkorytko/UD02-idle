@@ -11,14 +11,14 @@ public class UIManager : MonoBehaviour
         SwitchScreens(false);
     }
 
+    public void Initialize(GameManager gameManager)
+    {
+        gameManager.OnMoneyUpdate += gamePanelScript.SetCounter;
+    }
+
     public void SwitchScreens(bool isGameScreen)
     {
         gamePanel.SetActive(isGameScreen);
         mainPanel.SetActive(!isGameScreen);
-    }
-
-    public void UpdateGamePanel(float value)
-    {
-        gamePanelScript.SetCounter(value);
     }
 }

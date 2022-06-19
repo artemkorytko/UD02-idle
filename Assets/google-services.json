@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "546170748980",
+    "firebase_url": "https://tms-idle-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "tms-idle",
+    "storage_bucket": "tms-idle.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:546170748980:android:16166f6edbbe28b1ac0a61",
+        "android_client_info": {
+          "package_name": "com.bagibogdan.TMSIdle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "546170748980-2noos96a6alganbl3ordk4ss3l9g9tn2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_ywvf7dGh4907EFyIkMpBJP9_Z_pKku4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "546170748980-2noos96a6alganbl3ordk4ss3l9g9tn2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

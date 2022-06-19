@@ -6,7 +6,7 @@ public class LevelController : MonoBehaviour
 {
     [SerializeField] private UpgradableBuilding[] buildings;
 
-    public void Initialize(GameData gameData, Action<float> increaseMoney, Action<float> decreaseMoney, ref Action<float> onMoneyUpdate)
+    public void Initialize(GameData gameData, GameManager gameManager)
     {
         if (gameData.BuildingDataList == null) return;
 
@@ -16,10 +16,7 @@ public class LevelController : MonoBehaviour
         {
             if (i >= data.Count) break;
 
-            buildings[i].Initialize(data[i]);
-            buildings[i].ProcessCompleted += increaseMoney;
-            buildings[i].OnDecreaseMoney += decreaseMoney;
-            onMoneyUpdate += buildings[i].UpdateButtonState;
+            buildings[i].Initialize(data[i], gameManager);
         }
     }
 

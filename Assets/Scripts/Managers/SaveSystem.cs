@@ -3,6 +3,9 @@ using System.IO;
 using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
+using Firebase.Database;
+using Firebase.Extensions;
+using Cysharp.Threading.Tasks;
 
 public class SaveSystem : MonoBehaviour
 {
@@ -31,6 +34,29 @@ public class SaveSystem : MonoBehaviour
             return new GameData();
         }
     }
+
+    private void SaveDataFirebase(GameData data)
+    {
+        DatabaseReference reference = FirebaseDatabase.DefaultInstance.RootReference;
+        reference.Child("GameData").SetRawJsonValueAsync(JsonUtility.ToJson(data));
+    }
+
+    //private async UniTask<GameData> LoadDataFirebase()
+    //{
+    //    FirebaseDatabase.DefaultInstance
+    //      .GetReference("GameData")
+    //      .GetValueAsync().ContinueWithOnMainThread(task => {
+    //          if (task.IsFaulted)
+    //          {
+    //          // Handle the error...
+    //      }
+    //          else if (task.IsCompleted)
+    //          {
+    //              DataSnapshot snapshot = task.Result;
+    //          // Do something with snapshot...
+    //      }
+    //      });
+    //}
 }
 
 [Serializable]

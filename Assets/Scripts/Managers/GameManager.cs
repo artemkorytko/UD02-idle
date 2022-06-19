@@ -19,11 +19,12 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        _uiManager.SwitchScreens(true);
         _gameData = _saveSystem.LoadData();
-        _levelController.Initialize(_gameData, IncreaseMoney, DecreaseMoney, ref OnMoneyUpdate);
-        OnMoneyUpdate += _uiManager.UpdateGamePanel;
-        _uiManager.UpdateGamePanel(_gameData.Money);
+        _uiManager.Initialize(this);
+        _levelController.Initialize(_gameData, this);
+
+        _uiManager.SwitchScreens(true);
+        OnMoneyUpdate?.Invoke(_gameData.Money);
     }
 
     private void SaveData()

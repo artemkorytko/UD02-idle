@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using Cysharp.Threading.Tasks;
 
 public class UpgradableBuilding : MonoBehaviour
 {
@@ -9,11 +10,12 @@ public class UpgradableBuilding : MonoBehaviour
     [SerializeField] private Transform buildingPlace;
 
     private GameObject _currentModel;
-    private int _currentLevel;
-    private int _generateadMoney;
-    private float _upgradeCost;
     private UpgradeButton _upgradeButton;
     private Coroutine _coroutine;
+    private int _currentLevel;
+    private int _generatedMoney;
+    private float _upgradeCost;
+    private bool _isMaxLevel;
 
     private const string _unlockText = "BUY";
     private const string _upgradeText = "UP lvl.";
@@ -26,11 +28,15 @@ public class UpgradableBuilding : MonoBehaviour
     public event Action<float> ProcessCompleted;
     public event Action<float> OnDecreaseMoney;
 
-    public void Initialize(BuildingData data)
+    public void Initialize(BuildingData data, GameManager gameManager)
     {
         _upgradeButton = GetComponentInChildren<UpgradeButton>();
         _currentLevel = data.UpgradeLevel;
         IsUnlock = data.IsUnlock;
+
+        ProcessCompleted += gameManager.IncreaseMoney;
+        OnDecreaseMoney += gameManager.DecreaseMoney;
+        gameManager.OnMoneyUpdate += UpdateButtonState;
 
         if (IsUnlock)
         {
@@ -45,27 +51,35 @@ public class UpgradableBuilding : MonoBehaviour
 
     public void UpdateLevel()
     {
-        if (!IsUnlock) IsUnlock = true;
+        if (_isMaxLevel) return;
 
-        var index = _currentLevel + 1;
-
-        if (config.IsUpgradeExist(index))
+        if (!IsUnlock)
         {
-            _currentLevel++;
-            UpdateStates();
+            UnlockLevel();
         }
         else
         {
-            SetBuilding(config.MaxUpgrade());
-            _upgradeButton.UpdateButtonText(_maxLevelText, " ");
+            var index = _currentLevel + 1;
+
+            if (config.IsUpgradeExist(index))
+            {
+                _currentLevel++;
+                UpdateStates();
+            }
         }
+    }
+
+    private void UnlockLevel()
+    {
+        IsUnlock = true;
+        UpdateStates();
     }
 
     private void UpdateStates()
     {
         var levelConfig = config.GetUpgrade(_currentLevel);
-        SetBuilding(_currentLevel);
-        _generateadMoney = levelConfig.ProcessResult;
+        SetBuilding(levelConfig);
+        _generatedMoney = levelConfig.ProcessResult;
         OnDecreaseMoney?.Invoke(_upgradeCost);
 
         if (_coroutine == null)
@@ -73,8 +87,16 @@ public class UpgradableBuilding : MonoBehaviour
             _coroutine = StartCoroutine(IncreaseMoney());
         }
 
-        UpdateUpgradeCost(_currentLevel);
-        _upgradeButton.UpdateButtonText(_upgradeText + " " + _currentLevel, _upgradeCost.ToString());
+        if (_currentLevel == config.MaxUpgrade())
+        {
+            _upgradeButton.UpdateButtonText(_maxLevelText, " ");
+            _isMaxLevel = true;
+        }
+        else
+        {
+            UpdateUpgradeCost(_currentLevel);
+            _upgradeButton.UpdateButtonText(_upgradeText + " " + (_currentLevel + 1), _upgradeCost.ToString());
+        }
     }
 
     public void UpdateButtonState(float money)
@@ -89,17 +111,14 @@ public class UpgradableBuilding : MonoBehaviour
         }
     }
 
-    private void SetBuilding(int index)
+    private async void SetBuilding(UpgradeConfig config)
     {
-        var levelConfig = config.GetUpgrade(index);
-
         if (_currentModel != null)
         {
-            Destroy(_currentModel);
+            Addressables.ReleaseInstance(_currentModel);
         }
 
-        var currentObject = Addressables.InstantiateAsync(levelConfig.Model, gameObject.transform);
-        _currentModel = currentObject.Result;
+        _currentModel = await Addressables.InstantiateAsync(config.Model, gameObject.transform);
     }
 
     private void UpdateUpgradeCost(int levelIndex)
@@ -112,7 +131,7 @@ public class UpgradableBuilding : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(1);
-            ProcessCompleted?.Invoke(_generateadMoney);
+            ProcessCompleted?.Invoke(_generatedMoney);
         }
     }
 }
