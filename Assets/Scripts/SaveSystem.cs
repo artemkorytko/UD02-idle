@@ -4,45 +4,76 @@ using UnityEngine;
 using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using Cysharp.Threading.Tasks;
+using Firebase.Database;
+using Firebase.Extensions;
 
 public class SaveSystem : MonoBehaviour
 {
-    private static string Path;
-    private void Awake()
+    private GameData _gameData = null;
+    private const string DATA_KEY = "GameData";
+
+    public GameData Data => _gameData;
+    // private static string Path;
+    // private void Awake()
+    // {
+    //      Path = Application.persistentDataPath + "/gameDataTest1.data";
+    // }
+    //
+    // public void SaveData(GameData gameData)
+    // {
+    //     FileStream dataStream = new FileStream(Path, FileMode.OpenOrCreate);
+    //     BinaryFormatter converter = new BinaryFormatter();
+    //     converter.Serialize(dataStream, gameData);
+    //     dataStream.Close();
+    // }
+    //
+    // public GameData LoadData()
+    // {
+    //     if (File.Exists(Path)) 
+    //     {
+    //         FileStream dataStream = new FileStream(Path, FileMode.Open);
+    //         BinaryFormatter converter = new BinaryFormatter();
+    //         GameData data = converter.Deserialize(dataStream) as GameData;
+    //         dataStream.Close();
+    //         return data;
+    //     }
+    //     else
+    //     {
+    //         return new GameData();
+    //     }
+    // }
+
+    public void SaveData(GameData data)
     {
-         Path = Application.persistentDataPath + "/gameDataTest1.data";
+        DatabaseReference reference = FirebaseDatabase.DefaultInstance.RootReference;
+        reference.Child("GameData").SetRawJsonValueAsync(JsonUtility.ToJson(data));
     }
 
-    public void SaveData(GameData gameData)
+    public async UniTask<GameData> LoadData()
     {
-        FileStream dataStream = new FileStream(Path, FileMode.OpenOrCreate);
-        BinaryFormatter converter = new BinaryFormatter();
-        converter.Serialize(dataStream, gameData);
-        dataStream.Close();
-    }
+        GameData data = null;
+        await FirebaseDatabase.DefaultInstance.GetReference("GameData").GetValueAsync().ContinueWithOnMainThread(task =>
+        {
+            if (task.IsFaulted)
+            {
 
-    public GameData LoadData()
-    {
-        if (File.Exists(Path)) 
-        {
-            FileStream dataStream = new FileStream(Path, FileMode.Open);
-            BinaryFormatter converter = new BinaryFormatter();
-            GameData data = converter.Deserialize(dataStream) as GameData;
-            dataStream.Close();
-            return data;
-        }
-        else
-        {
-            return new GameData();
-        }
+            }
+            else if (task.IsCompleted)
+            {
+                DataSnapshot snapshot = task.Result;
+                data = JsonUtility.FromJson<GameData>(snapshot.GetRawJsonValue());
+            }
+        });
+        return data;
     }
 }
 
 [Serializable]
 public class GameData
 {
-    private const int BUILD_COUNT = 4;
-    public float Money = 0;
+    private const int BUILD_COUNT = 3;
+    public float Money = 100;
     public List<BuildingData> BuildingData;
 
     public GameData()
