@@ -2,93 +2,101 @@
 using System.Collections;
 using UnityEngine;
 using System;
-using UnityEngine.UI;
-using Cysharp.Threading.Tasks;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Assets.Scripts
 {
     public class UpgradableBuilding : MonoBehaviour
     {
-        [SerializeField] private UpgradableBuildingConfig _config;
-        [SerializeField] private Transform buildingRoot;
-        [SerializeField] private ButtonController _button;
-        private Money money;
-        private bool _active;
+        [SerializeField] private UpgradableBuildingConfig config = null;
+        [SerializeField] private Transform modelsContainer = null;
+        [SerializeField] private ButtonController button = null;
 
         private int _currentLevel;
-        private GameObject _currentModel;
+        private GameObject currentModel = null;
+        private Coroutine timer = null;
+        public Action<int> OnProcessFinished = null;
 
-        public bool IsUnlock { get; private set; }
+        public bool IsUnlock { get; private set; } = false;
         public int CurrentLevel => _currentLevel;
-        public GameObject CurrentModel => _currentModel;
 
-        public event Action<int> ProcessComplete;
-
-        public void Initialize(BuildingData data)
+        public void Initialize(bool isUnlock, int upgradeLevel = -1)
         {
+            IsUnlock = isUnlock;
+            _currentLevel = upgradeLevel;
 
-        }
-
-        private void Start()
-        {
-            money = FindObjectOfType<Money>();
-            IsUnlock = false;
-            _active = true;
+            if (IsUnlock && _currentLevel >= 0) SetModel(_currentLevel);
             UpdateButtonState();
+            GameManager.Instance.OnMoneyValueChange += button.OnMoneyValueChanged;
         }
-
-        private void Update()
-        {
-            if (_active)
-            {
-                MoneyIncrease();
-                _active = false;
-            }
-        }
-
-        async public void MoneyIncrease()
-        {
-            await UniTask.Delay(1000);
-            money.IsMoney += 1f;
-            _active = true;
-        }
-
+        
         public void Upgrade()
         {
             if (!IsUnlock)
             {
                 IsUnlock = true;
                 UpdateButtonState();
-                money.IsMoney -= _config.StartUpgradeCost;
+                GameManager.Instance.Money -= config.UnlockPrice;
                 return;
             }
-            if (_config.IsUpgradeExist(_currentLevel + 1))
+            if (config.IsUpgradeExist(_currentLevel + 1))
             {
                 _currentLevel++;
-                money.IsMoney -= GetCost(_currentLevel);
+                GameManager.Instance.Money -= GetCost(_currentLevel);
+                StartCoroutine(SetModel(_currentLevel));
                 UpdateButtonState();
             }
         }
 
+        private IEnumerator SetModel(int level)
+        {
+            UpgradeConfig upgradeConfig = config.GetUpgrade(level);
+
+            if (currentModel != null)
+            {
+                Addressables.ReleaseInstance(currentModel);
+            }
+            
+            AsyncOperationHandle<GameObject> handler = Addressables.InstantiateAsync(upgradeConfig.Model, modelsContainer);
+            yield return handler;
+            currentModel = handler.Result;
+            currentModel.transform.localPosition = Vector3.zero;
+            
+            if (timer == null)
+            {
+                timer = StartCoroutine(MoneyIncrease());
+            }
+        }
+
+        private IEnumerator MoneyIncrease()
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(1f);
+                OnProcessFinished?.Invoke(config.GetUpgrade(_currentLevel).ProcessResult);
+            }
+        }
+        
         private void UpdateButtonState()
         {
             if (!IsUnlock)
             {
-                _button.UpdateButton("BUY", _config.UnlockPrice);
+                button.UpdateButton("BUY", config.UnlockPrice);
             }
-            if(_config.IsUpgradeExist(_currentLevel + 1))
+            else if(config.IsUpgradeExist(_currentLevel + 1))
             {
-                _button.UpdateButton("UPGRADE", GetCost(CurrentLevel + 1));
+                button.UpdateButton("UPGRADE", GetCost(CurrentLevel + 1));
             }
-            //else
-            //{
-            //    _button.gameObject.SetActive(false);
-            //}
+            else
+            {
+                button.gameObject.SetActive(false);
+            }
         }
 
         private float GetCost(int level)
         {
-            return (float)Math.Round(_config.StartUpgradeCost * Math.Pow(_config.CostMultiplier, level));
+            return (float)Math.Round(config.StartUpgradeCost * Math.Pow(config.CostMultiplier, level), 2);
         }
     }
 }

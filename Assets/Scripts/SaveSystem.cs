@@ -7,7 +7,12 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class SaveSystem : MonoBehaviour
 {
-    private static readonly string Path = Application.persistentDataPath + "/gameData.data";
+    private static string Path;
+    private void Awake()
+    {
+         Path = Application.persistentDataPath + "/gameDataTest1.data";
+    }
+
     public void SaveData(GameData gameData)
     {
         FileStream dataStream = new FileStream(Path, FileMode.OpenOrCreate);

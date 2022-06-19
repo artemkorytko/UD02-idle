@@ -17,12 +17,7 @@ MonoBehaviour:
   costMultiplier: 1.7
   upgrades:
   - {fileID: 11400000, guid: b86e90cf36e3ab8408ec1d201ae36e29, type: 2}
-  - {fileID: 11400000, guid: b86e90cf36e3ab8408ec1d201ae36e29, type: 2}
-  - {fileID: 11400000, guid: b86e90cf36e3ab8408ec1d201ae36e29, type: 2}
-  - {fileID: 11400000, guid: b86e90cf36e3ab8408ec1d201ae36e29, type: 2}
-  - {fileID: 11400000, guid: b86e90cf36e3ab8408ec1d201ae36e29, type: 2}
-  - {fileID: 11400000, guid: b86e90cf36e3ab8408ec1d201ae36e29, type: 2}
-  - {fileID: 11400000, guid: b86e90cf36e3ab8408ec1d201ae36e29, type: 2}
-  - {fileID: 11400000, guid: b86e90cf36e3ab8408ec1d201ae36e29, type: 2}
-  - {fileID: 11400000, guid: b86e90cf36e3ab8408ec1d201ae36e29, type: 2}
-  - {fileID: 11400000, guid: b86e90cf36e3ab8408ec1d201ae36e29, type: 2}
+  - {fileID: 11400000, guid: 852cf7bae8c80a64c9cce5f03c3ca2dc, type: 2}
+  - {fileID: 11400000, guid: 1c773e9087624f54fa8258423a1ea2d9, type: 2}
+  - {fileID: 11400000, guid: 6736557c7d416874ebf4a6a554fff786, type: 2}
+  - {fileID: 11400000, guid: 7160d7e2a77d438489893e4f3bf49fd5, type: 2}

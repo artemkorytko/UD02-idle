@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "845650614230",
+    "project_id": "ud02-test-6504a",
+    "storage_bucket": "ud02-test-6504a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:845650614230:android:8f4ce176c5b49ff55d3677",
+        "android_client_info": {
+          "package_name": "com.zakhar.UD02idle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "845650614230-04p7evijce1m3757qgu3b93c5bua5ebn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAal8-QGdYEriD1l3vefYNTl4ALwozee6s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "845650614230-04p7evijce1m3757qgu3b93c5bua5ebn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

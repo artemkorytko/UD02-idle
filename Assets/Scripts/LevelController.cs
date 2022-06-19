@@ -6,7 +6,7 @@ namespace Assets.Scripts
 {
     public class LevelController : MonoBehaviour
     {
-        [SerializeField] private UpgradableBuilding[] buildings;
+        [SerializeField] private List<UpgradableBuilding> buildings;
 
         public void Initialize(GameData gameData)
         {
@@ -14,11 +14,12 @@ namespace Assets.Scripts
 
             var data = gameData.BuildingData;
             
-            for(int i = 0; i < buildings.Length; i++)
+            for(int i = 0; i < buildings.Count; i++)
             {
                 if (i >= data.Count) break;
 
-                buildings[i].Initialize(data[i]);
+                buildings[i].Initialize(data[i].IsUnlock, data[i].UpgradeLevel);
+                buildings[i].OnProcessFinished += (int money) => { GameManager.Instance.Money += money; };
             }
         }
 
@@ -26,7 +27,7 @@ namespace Assets.Scripts
         {
             var list = new List<BuildingData>();
 
-            for(int i = 0; i < buildings.Length; i++)
+            for(int i = 0; i < buildings.Count; i++)
             {
                 list.Add(new BuildingData(buildings[i].IsUnlock, buildings[i].CurrentLevel));
             }

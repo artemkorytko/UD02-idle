@@ -9,12 +9,40 @@ namespace Assets.Scripts
         private SaveSystem _saveSystem;
         private LevelController _LevelController;
         private UIManager _UIManager;
+        public static GameManager Instance = null;
+
+        private float _money = 60;
+        public System.Action<float> OnMoneyValueChange = null;
+
+        public float Money
+        {
+            get
+            {
+                return _money;
+            }
+
+            set
+            {
+                if (value >= 0)
+                {
+                    _money = value;
+                    _money = (float) System.Math.Round(_money, 2);
+                    OnMoneyValueChange?.Invoke(_money);
+                }
+            }
+        }
 
         private void Awake()
         {
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            
             _saveSystem = FindObjectOfType<SaveSystem>();
             _LevelController = FindObjectOfType<LevelController>();
             _UIManager = FindObjectOfType<UIManager>();
+            StartGame();
         }
 
         private void StartGame()
