@@ -35,35 +35,39 @@ public class SaveSystem : MonoBehaviour
         }
     }
 
-    private void SaveDataFirebase(GameData data)
+    public async void SaveDataFirebase(GameData data)
     {
         DatabaseReference reference = FirebaseDatabase.DefaultInstance.RootReference;
-        reference.Child("GameData").SetRawJsonValueAsync(JsonUtility.ToJson(data));
+        await reference.Child("GameData").SetRawJsonValueAsync(JsonUtility.ToJson(data));
     }
 
-    //private async UniTask<GameData> LoadDataFirebase()
-    //{
-    //    FirebaseDatabase.DefaultInstance
-    //      .GetReference("GameData")
-    //      .GetValueAsync().ContinueWithOnMainThread(task => {
-    //          if (task.IsFaulted)
-    //          {
-    //          // Handle the error...
-    //      }
-    //          else if (task.IsCompleted)
-    //          {
-    //              DataSnapshot snapshot = task.Result;
-    //          // Do something with snapshot...
-    //      }
-    //      });
-    //}
+    public async UniTask<GameData> LoadDataFirebase()
+    {
+        GameData data = null;
+        var getValueTask = FirebaseDatabase.DefaultInstance.GetReference("GameData").GetValueAsync();
+        
+        await getValueTask.ContinueWithOnMainThread(async task => {
+          await UniTask.WaitWhile(() => task.IsCompleted == false);
+          if (task.IsFaulted)
+          {
+            // Handle the error...
+          }
+          else if (task.IsCompleted)
+          {
+            DataSnapshot snapshot = task.Result;
+            data = JsonUtility.FromJson<GameData>(snapshot.GetRawJsonValue());
+          }
+        }); 
+        await UniTask.WaitWhile(() => data == null);
+        return data;
+    }
 }
 
 [Serializable]
 public class GameData
 {
     private const int BUILD_COUNT = 4;
-    public float Money = 60;
+    public float Money = 50;
     public List<BuildingData> BuildingDataList;
 
     public GameData()

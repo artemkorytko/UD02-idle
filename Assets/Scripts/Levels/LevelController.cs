@@ -6,7 +6,7 @@ public class LevelController : MonoBehaviour
 {
     [SerializeField] private UpgradableBuilding[] buildings;
 
-    public void Initialize(GameData gameData, GameManager gameManager)
+    public void Initialize(GameData gameData, GameManager gameManager, int buildingsCount)
     {
         if (gameData.BuildingDataList == null) return;
 
@@ -16,7 +16,14 @@ public class LevelController : MonoBehaviour
         {
             if (i >= data.Count) break;
 
-            buildings[i].Initialize(data[i], gameManager);
+            if (i > (buildingsCount - 1) && buildingsCount > 0)
+            {
+                buildings[i].gameObject.SetActive(false);
+            }
+            else
+            {
+                buildings[i].Initialize(data[i], gameManager);
+            }
         }
     }
 
