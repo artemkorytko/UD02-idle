@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "30213960143",
+    "firebase_url": "https://idle-nikitaneiv-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "idle-nikitaneiv",
+    "storage_bucket": "idle-nikitaneiv.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:30213960143:android:a87e9f86da5b1e9cdd62ba",
+        "android_client_info": {
+          "package_name": "com.nikitaneivCompany.Idle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "30213960143-qji7ipgi8ah5e92eu0afdeqdrenlmjlv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAviKAmdrmMRYsuSyI4E3GIILNQAYNf5Lk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "30213960143-qji7ipgi8ah5e92eu0afdeqdrenlmjlv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

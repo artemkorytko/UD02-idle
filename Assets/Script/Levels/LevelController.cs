@@ -12,23 +12,24 @@ namespace Levels
         {
             if (gameData.BuildingData == null) return;
 
-            var data = gameData.BuildingData;
+            List<BuildingData> buildingsData = gameData.BuildingData;
 
             for (int i = 0; i < buildings.Length; i++)
             {
-                if (i >= data.Count) break;
-                buildings[i].Initialize(data[i]);
+                if (i >= buildingsData.Count) break;
+                buildings[i].Initialize(buildingsData[i].IsUnlock, buildingsData[i].UpgradeLevel);
+                buildings[i].OnProcessFinished += (int money) => { GameManager.Instance.Money += money; };
             }
         }
 
         public List<BuildingData> GetBuildingData()
         {
-            var List = new List<BuildingData>();
+            List<BuildingData> buildingsData = new List<BuildingData>();
             for (int i = 0; i < buildings.Length; i++)
             {
-                List.Add(new BuildingData(buildings[i].IsUnlock, buildings[i].CurrentLevel));
+                buildingsData.Add(new BuildingData(buildings[i].IsUnlock, buildings[i].CurrentLevel));
             }
-            return List;
+            return buildingsData;
         }
     }
 }

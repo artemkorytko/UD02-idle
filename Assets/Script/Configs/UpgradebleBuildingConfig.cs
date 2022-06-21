@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 
 
-[CreateAssetMenu(fileName = "UpgradebleBuildingConfig", menuName = "Config/UpgradebleBuildingConfig", order = 0)]
+[CreateAssetMenu(fileName = "UpgradebleBuildingConfig", menuName = "Config/UpgradebleBuildingConfig")]
 public class UpgradebleBuildingConfig : ScriptableObject
 {
     [SerializeField] private float unlockPrice = 30;

@@ -280,6 +280,7 @@ GameObject:
   - component: {fileID: 3252345654249088858}
   - component: {fileID: 3451348557970810332}
   - component: {fileID: 8192549127278563007}
+  - component: {fileID: 1497966559457917888}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -389,7 +390,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3252345654249088858}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8192549127278563007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -402,6 +415,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94c6d2587cb27e642888955d299198a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1497966559457917888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5979754765828262045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 365d0a3d29f5e8a458f2b8088b6399e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _costText: {fileID: 3155821944459666344}
+  _text: {fileID: 3155821944459666344}
 --- !u!1 &7321059774498806188
 GameObject:
   m_ObjectHideFlags: 0
@@ -411,6 +438,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4354570974397331172}
+  - component: {fileID: 4248089779578965226}
   m_Layer: 0
   m_Name: BuildPlace
   m_TagString: Untagged
@@ -436,6 +464,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4248089779578965226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7321059774498806188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fcd64f6d6e79a04b8fa518f6d153b89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  config: {fileID: 11400000, guid: cd62709684805214eaea5f8e7fe97bd4, type: 2}
+  buildingRoot: {fileID: 1224960946800468304}
+  button: {fileID: 1497966559457917888}
 --- !u!1 &7355582207596992540
 GameObject:
   m_ObjectHideFlags: 0

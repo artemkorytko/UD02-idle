@@ -3,26 +3,55 @@ using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.Generic;
+using Firebase.Database;
+using Firebase.Extensions;
+using Cysharp.Threading.Tasks;
 
 namespace Managers
 {
 
     public class SaveSystem : MonoBehaviour
     {
-        private static readonly string Path = Application.persistentDataPath + "/gameData.data";
+        private static readonly string Path = "/gameData.bin";
+
+        //public void SaveData(GameData data)
+        //{
+        //    DatabaseReference reference = FirebaseDatabase.DefaultInstance.RootReference;
+        //    reference.Child("GameData").SetRawJsonValueAsync(JsonUtility.ToJson(data));
+        //}
+
+        //public async UniTask<GameData> LoadData()
+        //{
+        //    GameData data = null;
+        //    await FirebaseDatabase.DefaultInstance
+        //       .GetReference(path: "Leaders")
+        //        .GetValueAsync().ContinueWithOnMainThread(task =>
+        //       {
+        //           if (task.IsFaulted)
+        //           {
+
+        //           }
+        //           else if (task.IsCompleted)
+        //           {
+        //               DataSnapshot snapshot = task.Result;
+        //           }
+        //       });
+        //    return data;
+        //}
+
         public void SaveData(GameData gamedata)
         {
-            FileStream dataStream = new FileStream(Path, FileMode.OpenOrCreate);
+            FileStream dataStream = new FileStream(Application.persistentDataPath + Path, FileMode.OpenOrCreate);
             BinaryFormatter converter = new BinaryFormatter();
-            converter.Serialize(dataStream, gamedata );
+            converter.Serialize(dataStream, gamedata);
             dataStream.Close();
         }
 
         public GameData LoadData()
         {
-            if (File.Exists(Path))
+            if (File.Exists(Application.persistentDataPath + Path))
             {
-                FileStream dataStream = new FileStream(Path, FileMode.Open);
+                FileStream dataStream = new FileStream(Application.persistentDataPath + Path, FileMode.Open);
                 BinaryFormatter converter = new BinaryFormatter();
                 GameData data = converter.Deserialize(dataStream) as GameData;
                 dataStream.Close();
@@ -31,7 +60,7 @@ namespace Managers
             }
 
             return new GameData();
-            
+
         }
 
     }
