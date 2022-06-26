@@ -1,16 +1,34 @@
 using System;
 using UnityEngine;
-using Cysharp.Threading.Tasks;
-using Firebase.Extensions;
-using System.Threading.Tasks;
+using JetBrains.Annotations;
 
 public class GameManager : MonoBehaviour
 {
     private SaveSystem _saveSystem;
     private LevelController _levelController;
     private UIManager _uiManager;
+    private FirebaseManager _firebaseManager;
     private GameData _gameData;
     private int _buildingsCount;
+
+    public int BuildingsCount
+    {
+        get
+        {
+            return _buildingsCount;
+        }
+        set
+        {
+            if (value > 0 && value < 5)
+            {
+                _buildingsCount = value;
+            }
+            else
+            {
+                _buildingsCount = 4;
+            }
+        }
+    }
 
     public event Action<float> OnMoneyUpdate;
 
@@ -19,22 +37,22 @@ public class GameManager : MonoBehaviour
         _saveSystem = FindObjectOfType<SaveSystem>();
         _levelController = FindObjectOfType<LevelController>();
         _uiManager = FindObjectOfType<UIManager>();
+        _firebaseManager = FindObjectOfType<FirebaseManager>();
+
+        await _firebaseManager.Initialize(this);
+        await _firebaseManager.RemoteConfigBuildingsCount();
         
-        await BuildingsCountRemoteConfig();
-        Console.WriteLine($"BuildingsCount {_buildingsCount}"); // Эта строка никогда не выводится в консоли,
-                                                                // хотя Remout Config загружается успешно
+        BuildingsLevelCheck(null);
     }
 
     public async void StartGame()
     {
-        Console.WriteLine("Start method");
-        GameData gameData = await _saveSystem.LoadDataFirebase(); 
-        Console.WriteLine("Load Data from Firebase completed");
+        var firebaseGameData = await _saveSystem.LoadDataFirebase();
+        _gameData = _saveSystem.LoadDataLocally();
         
-        _gameData = _saveSystem.LoadData();
-        if (gameData != null)
+        if (firebaseGameData != null)
         {
-            _gameData.Money = gameData.Money;
+            _gameData.Money = firebaseGameData.Money;
         }
 
         _uiManager.Initialize(this);
@@ -42,26 +60,16 @@ public class GameManager : MonoBehaviour
         
         _uiManager.SwitchScreens(true);
         OnMoneyUpdate?.Invoke(_gameData.Money);
-    }
-
-    private async UniTask BuildingsCountRemoteConfig()
-    {
-        var fetchTask = Firebase.RemoteConfig.FirebaseRemoteConfig.DefaultInstance.FetchAsync(TimeSpan.Zero);
-        await fetchTask.ContinueWithOnMainThread(CheckValue);
-    }
-
-    private async UniTask CheckValue(Task obj)
-    {
-        await Firebase.RemoteConfig.FirebaseRemoteConfig.DefaultInstance.ActivateAsync();
-        var value = Firebase.RemoteConfig.FirebaseRemoteConfig.DefaultInstance.GetValue("building_amount");
-        _buildingsCount = (int)value.LongValue;
+        
+        Debug.Log("Game started");
+        throw new Exception("Crashlytics test exception");
     }
 
     private void SaveData()
     {
         if (_gameData == null) return;
         
-        _saveSystem.SaveData(new GameData() { BuildingDataList = _levelController.GetBuildingData()});
+        _saveSystem.SaveDataLocally(new GameData() { BuildingDataList = _levelController.GetBuildingData()});
         _saveSystem.SaveDataFirebase(new GameData() { Money = _gameData.Money });
     }
 
@@ -85,8 +93,51 @@ public class GameManager : MonoBehaviour
         OnMoneyUpdate?.Invoke(_gameData.Money);
     }
 
+    public void BuildingsLevelCheck([CanBeNull] string buildingName)
+    {
+        var buildingsList = _levelController.GetBuildingData();
+        var buildingsMaxLevel = _levelController.GetBuildingsMaxLevel();
+        var maxLevelBuildingsCount = 0;
+
+        if (buildingName != null)
+        {
+            _firebaseManager.BuildingMaxLevelEvent(buildingName);
+        }
+
+        foreach (var building in buildingsList)
+        {
+            if (building.UpgradeLevel == buildingsMaxLevel)
+            {
+                maxLevelBuildingsCount++;
+            }
+        }
+
+        if (maxLevelBuildingsCount == _buildingsCount)
+        {
+            _firebaseManager.AllBuildingsMaxLevelEvent();
+        }
+    }
+
+    public void BuildingUnlocked(string buildingName)
+    {
+        _firebaseManager.BuildingUnlockEvent(buildingName);
+    }
+    
+    public void BuildingUpgrated(string buildingName, int level)
+    {
+        _firebaseManager.LevelUpEvent(buildingName, level);
+    }
+
     private void OnApplicationQuit()
     {
         SaveData();
+    }
+
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        if (!hasFocus)
+        {
+            SaveData();           
+        }
     }
 }

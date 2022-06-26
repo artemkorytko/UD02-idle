@@ -23,10 +23,13 @@ public class UpgradableBuilding : MonoBehaviour
 
     public bool IsUnlock { get; private set; }
     public int CurrentLevel => _currentLevel;
-    public float UpgradeCost => _upgradeCost;
+    public int MaxBuildingLevel => config.MaxUpgrade();
 
     public event Action<float> ProcessCompleted;
     public event Action<float> OnDecreaseMoney;
+    public event Action<string> OnBuildingUnlock;
+    public event Action<string,int> OnLevelUpdate;
+    public event Action<string> OnMaxLevelUpgrade;
 
     public void Initialize(BuildingData data, GameManager gameManager)
     {
@@ -36,6 +39,9 @@ public class UpgradableBuilding : MonoBehaviour
 
         ProcessCompleted += gameManager.IncreaseMoney;
         OnDecreaseMoney += gameManager.DecreaseMoney;
+        OnBuildingUnlock += gameManager.BuildingUnlocked;
+        OnLevelUpdate += gameManager.BuildingUpgrated;
+        OnMaxLevelUpgrade += gameManager.BuildingsLevelCheck;
         gameManager.OnMoneyUpdate += UpdateButtonState;
 
         if (IsUnlock)
@@ -56,6 +62,7 @@ public class UpgradableBuilding : MonoBehaviour
         if (!IsUnlock)
         {
             UnlockLevel();
+            OnBuildingUnlock?.Invoke(gameObject.name);
         }
         else
         {
@@ -65,6 +72,7 @@ public class UpgradableBuilding : MonoBehaviour
             {
                 _currentLevel++;
                 UpdateStates();
+                OnLevelUpdate?.Invoke(gameObject.name, _currentLevel);
             }
         }
     }
@@ -91,6 +99,7 @@ public class UpgradableBuilding : MonoBehaviour
         {
             _upgradeButton.UpdateButtonText(_maxLevelText, " ");
             _isMaxLevel = true;
+            OnMaxLevelUpgrade?.Invoke(gameObject.name);
         }
         else
         {
@@ -124,6 +133,11 @@ public class UpgradableBuilding : MonoBehaviour
     private void UpdateUpgradeCost(int levelIndex)
     {
         _upgradeCost = config.StartUpgradeCost + (config.StartUpgradeCost * config.CostMultiplier * levelIndex);
+    }
+
+    public UpgradableBuildingConfig GetUpgradeConfigs()
+    {
+        return config;
     }
 
     private IEnumerator IncreaseMoney()

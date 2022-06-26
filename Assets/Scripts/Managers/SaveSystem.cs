@@ -11,7 +11,7 @@ public class SaveSystem : MonoBehaviour
 {
     private static readonly string Path = "/gameData.data";
 
-    public void SaveData(GameData gameData)
+    public void SaveDataLocally(GameData gameData)
     {
         FileStream dataStream = new FileStream(Application.persistentDataPath + Path, FileMode.OpenOrCreate);
         BinaryFormatter converter = new BinaryFormatter();
@@ -19,7 +19,7 @@ public class SaveSystem : MonoBehaviour
         dataStream.Close();
     }
 
-    public GameData LoadData()
+    public GameData LoadDataLocally()
     {
         if (File.Exists(Application.persistentDataPath + Path))
         {
@@ -39,6 +39,7 @@ public class SaveSystem : MonoBehaviour
     {
         DatabaseReference reference = FirebaseDatabase.DefaultInstance.RootReference;
         await reference.Child("GameData").SetRawJsonValueAsync(JsonUtility.ToJson(data));
+        Debug.Log("Save Data to Firebase completed");
     }
 
     public async UniTask<GameData> LoadDataFirebase()
@@ -59,6 +60,8 @@ public class SaveSystem : MonoBehaviour
           }
         }); 
         await UniTask.WaitWhile(() => data == null);
+        
+        Debug.Log("Load Data from Firebase completed");
         return data;
     }
 }

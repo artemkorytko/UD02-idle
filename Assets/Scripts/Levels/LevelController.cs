@@ -38,4 +38,9 @@ public class LevelController : MonoBehaviour
 
         return list;
     }
+
+    public int GetBuildingsMaxLevel()
+    {
+        return buildings[0].MaxBuildingLevel;
+    }
 }
