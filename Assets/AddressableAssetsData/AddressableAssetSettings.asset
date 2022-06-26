@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_DefaultGroup: db668a6c0aae7124f9a1fcf2cd16ebe0
   m_OptimizeCatalogSize: 0
-  m_BuildRemoteCatalog: 0
+  m_BuildRemoteCatalog: 1
   m_BundleLocalCatalog: 0
   m_CatalogRequestsTimeout: 0
   m_DisableCatalogUpdateOnStart: 0
@@ -30,14 +30,15 @@ MonoBehaviour:
   m_MonoScriptBundleNaming: 0
   m_MonoScriptBundleCustomNaming: 
   m_RemoteCatalogBuildPath:
-    m_Id: 
+    m_Id: 22a46fa59bcb89e47bc64865d8217ea5
   m_RemoteCatalogLoadPath:
-    m_Id: 
+    m_Id: 75d84204e3705634e97dc8969a8c7b3a
   m_ContentStateBuildPath: 
   m_overridePlayerVersion: 
   m_GroupAssets:
   - {fileID: 11400000, guid: c9132ef858cf3a14aa0e243c97d98daf, type: 2}
   - {fileID: 11400000, guid: 404e65e1870016e4482393ca2f0006a9, type: 2}
+  - {fileID: 11400000, guid: 43ca6e00a9f9ebe49a81a478b292116a, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -58,7 +59,7 @@ MonoBehaviour:
       - m_Id: 22a46fa59bcb89e47bc64865d8217ea5
         m_Value: ServerData/[BuildTarget]
       - m_Id: 75d84204e3705634e97dc8969a8c7b3a
-        m_Value: http://localhost/[BuildTarget]
+        m_Value: gs://tms-idle.appspot.com/addressables/
     m_ProfileEntryNames:
     - m_Id: b9261cfceb031eb45aace5a62ee72131
       m_Name: BuildTarget

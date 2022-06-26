@@ -16,35 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: db668a6c0aae7124f9a1fcf2cd16ebe0
-  m_SerializeEntries:
-  - m_GUID: 57940694f635f254d9ef53df800fbc2e
-    m_Address: Assets/Prefabs/Buildings/Factory1.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 54f58841cd9404e468d67f718b162502
-    m_Address: Assets/Prefabs/Buildings/Factory2.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: cd73763d13331a54db82eecaaf4617d0
-    m_Address: Assets/Prefabs/Buildings/Factory3.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: bcd99ae53ab74f942a066720e5e8f511
-    m_Address: Assets/Prefabs/Buildings/Factory4.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: c84281c9fefd1bf4cab029a9dacd1aa2
-    m_Address: Assets/Prefabs/Buildings/Factory5.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 6c70cf44d8710394298a7f60756220da
-    m_Address: Assets/Prefabs/Buildings/Factory6.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: e53153a76a4f7f14c8648fe522932569
-    m_Address: Assets/Prefabs/Buildings/Factory7.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 6d5f838710923aa4cbb270588ede19b1, type: 2}
   m_SchemaSet:

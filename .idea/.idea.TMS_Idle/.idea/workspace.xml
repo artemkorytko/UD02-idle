@@ -7,6 +7,10 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.addressables@1.18.19/Editor/Build/DataBuilders/BuildScriptBase.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.addressables@1.18.19/Editor/Settings/AddressableAssetSettings.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -73,6 +77,8 @@
       <workItem from="1655838661078" duration="6281000" />
       <workItem from="1656019195073" duration="6955000" />
       <workItem from="1656256244215" duration="6064000" />
+      <workItem from="1656279978399" duration="420000" />
+      <workItem from="1656281883821" duration="1244000" />
     </task>
     <servers />
   </component>
