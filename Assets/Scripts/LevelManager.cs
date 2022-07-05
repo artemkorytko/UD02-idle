@@ -23,7 +23,7 @@ public class LevelManager : MonoBehaviour
     {
         for (int i = 0; i < _points.Count; i++)
         {
-            _points[i]
+            _points[i].
         }
     }
     

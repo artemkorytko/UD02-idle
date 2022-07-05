@@ -2,19 +2,19 @@ using UnityEngine;
 
 namespace Points
 {
-    public class Point : MonoBehaviour
+    public abstract class Point : MonoBehaviour
     {
-        public void Initialize()
+        public virtual void Initialize()
         {
             print("InitializingPoint");
         }
         
-        public async void EarnMoney()
+        public virtual async void EarnMoney()
         {
             print("MoneyChanged");
         }
         
-        public void Upgrade()
+        public virtual void Upgrade()
         {
             print("Upgrade");
         }

@@ -23,21 +23,24 @@ namespace Points
         
 
 
-        public void Initialize()
+        public override void Initialize()
         {
+            base.Initialize();
             moneyCounter.text = $"Buy {_stockPrice}";
             _currentBuilding = buildingStates.Dequeue();
             Instantiate(_currentBuilding, buildingPoint.transform);
         }
 
-        public void EarnMoney()
+        public override void EarnMoney()
         {
+            base.EarnMoney();
             throw new NotImplementedException();
-            StartCoroutine();
+            //StartCoroutine();
         }
 
-        public void Upgrade()
+        public override void Upgrade()
         {
+            base.Upgrade();
             if (buildingStates.Dequeue() != null) 
             {
                 _currentBuilding = buildingStates.Dequeue();
