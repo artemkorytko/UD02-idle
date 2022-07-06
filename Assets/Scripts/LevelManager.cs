@@ -1,30 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
-using Points;
+using Cysharp.Threading.Tasks.Triggers;
 using UnityEngine;
 using UnityEngine.UI;
 using Point = System.Drawing.Point;
 
-public class LevelManager : MonoBehaviour
+namespace MyNameSpace
 {
-    [SerializeField] private List<Point> _points;
-    [SerializeField] private Text moneyCounter;
-    //private Point _currentPoint;
-    private int money;
 
-
-    private void Awake()
+    public class LevelManager : MonoBehaviour
     {
-        Initialize();
-    }
+        [SerializeField] private List<Point> _points;
+        [SerializeField] private Text moneyCounter;
+    
+        private int money;
 
-
-    public void Initialize()
-    {
-        for (int i = 0; i < _points.Count; i++)
+        
+        public void Initialize()
         {
-            _points[i].
+            foreach (var point in _points)
+            {
+                point.Initialize();
+            }
         }
-    }
+
+   }
+
+
+    
     
 }
