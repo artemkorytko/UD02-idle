@@ -1,13 +1,32 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using MyNameSpace;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+namespace MyNamespace
 {
-    [SerializeField] private LevelManager;
+    public class GameManager : MonoBehaviour
+    {
+        [SerializeField] private Level level;
+        [SerializeField] private UIManager uiManager;
 
-    [SerializeField]
-    private UIManager;
+        
+        private void Awake()
+        {
+            uiManager.Initialize();
+        }
+    
+    
+        
+        
+        //Button's methods
+        public void StartGame()
+        {
+            level = Instantiate(level.gameObject, transform).GetComponent<Level>();
+            level.Initialize();
+            uiManager.ShowGameScreen();
+        }
+
+        public void ExitGame()
+        {
+            //Application.
+        }
+    }
 }
