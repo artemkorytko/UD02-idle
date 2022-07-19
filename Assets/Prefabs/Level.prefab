@@ -54,6 +54,7 @@ MonoBehaviour:
   - {fileID: 8217011875789776736}
   - {fileID: 356778407506690037}
   - {fileID: 1098025521104752080}
+  uiManager: {fileID: 0}
 --- !u!1 &1457282766233091960
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,6 +145,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1366800729450846163}
     m_Modifications:
+    - target: {fileID: 1939408904131328204, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3766273017458210899, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: buildingStatesModels.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3766273017458210899, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: buildingStatesModels.Array.data[0]
+      value: 
+      objectReference: {fileID: 100000, guid: e0828b8951ddb5742b21325602b044b8, type: 3}
+    - target: {fileID: 3766273017458210899, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: buildingStatesModels.Array.data[1]
+      value: 
+      objectReference: {fileID: 100000, guid: 53ec1bd968802e14b997a32f25e4c11c, type: 3}
+    - target: {fileID: 3766273017458210899, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: buildingStatesModels.Array.data[2]
+      value: 
+      objectReference: {fileID: 100000, guid: 014a9adc62efe2c42ac5b24034755457, type: 3}
+    - target: {fileID: 3766273017458210899, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: buildingStatesModels.Array.data[3]
+      value: 
+      objectReference: {fileID: 100000, guid: d4ecfb7a588ce5e49a3fbdaef52bc681, type: 3}
+    - target: {fileID: 4469896768659853722, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8530068463327476007, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: m_Text
+      value: Buy - 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8530068463347957032, guid: d6182911ef0c22241b955c865785dc77, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -291,6 +324,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1366800729450846163}
     m_Modifications:
+    - target: {fileID: 1939408904131328204, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3766273017458210899, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: buildingStatesModels.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3766273017458210899, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: buildingStatesModels.Array.data[0]
+      value: 
+      objectReference: {fileID: 100000, guid: e0828b8951ddb5742b21325602b044b8, type: 3}
+    - target: {fileID: 3766273017458210899, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: buildingStatesModels.Array.data[1]
+      value: 
+      objectReference: {fileID: 100000, guid: 53ec1bd968802e14b997a32f25e4c11c, type: 3}
+    - target: {fileID: 3766273017458210899, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: buildingStatesModels.Array.data[2]
+      value: 
+      objectReference: {fileID: 100000, guid: 014a9adc62efe2c42ac5b24034755457, type: 3}
+    - target: {fileID: 3766273017458210899, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: buildingStatesModels.Array.data[3]
+      value: 
+      objectReference: {fileID: 100000, guid: d4ecfb7a588ce5e49a3fbdaef52bc681, type: 3}
+    - target: {fileID: 4469896768659853722, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8530068463327476007, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: m_Text
+      value: Buy - 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8530068463347957032, guid: d6182911ef0c22241b955c865785dc77, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -364,6 +429,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1366800729450846163}
     m_Modifications:
+    - target: {fileID: 1939408904131328204, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3766273017458210899, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: buildingStatesModels.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3766273017458210899, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: buildingStatesModels.Array.data[0]
+      value: 
+      objectReference: {fileID: 100000, guid: e0828b8951ddb5742b21325602b044b8, type: 3}
+    - target: {fileID: 3766273017458210899, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: buildingStatesModels.Array.data[1]
+      value: 
+      objectReference: {fileID: 100000, guid: 53ec1bd968802e14b997a32f25e4c11c, type: 3}
+    - target: {fileID: 3766273017458210899, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: buildingStatesModels.Array.data[2]
+      value: 
+      objectReference: {fileID: 100000, guid: 014a9adc62efe2c42ac5b24034755457, type: 3}
+    - target: {fileID: 3766273017458210899, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: buildingStatesModels.Array.data[3]
+      value: 
+      objectReference: {fileID: 100000, guid: d4ecfb7a588ce5e49a3fbdaef52bc681, type: 3}
+    - target: {fileID: 4469896768659853722, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8530068463327476007, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: m_Text
+      value: Buy - 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8530068463347957032, guid: d6182911ef0c22241b955c865785dc77, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -441,6 +538,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1366800729450846163}
     m_Modifications:
+    - target: {fileID: 1939408904131328204, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3766273017458210899, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: buildingStatesModels.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3766273017458210899, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: buildingStatesModels.Array.data[0]
+      value: 
+      objectReference: {fileID: 100000, guid: e0828b8951ddb5742b21325602b044b8, type: 3}
+    - target: {fileID: 3766273017458210899, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: buildingStatesModels.Array.data[1]
+      value: 
+      objectReference: {fileID: 100000, guid: 53ec1bd968802e14b997a32f25e4c11c, type: 3}
+    - target: {fileID: 3766273017458210899, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: buildingStatesModels.Array.data[2]
+      value: 
+      objectReference: {fileID: 100000, guid: 014a9adc62efe2c42ac5b24034755457, type: 3}
+    - target: {fileID: 3766273017458210899, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: buildingStatesModels.Array.data[3]
+      value: 
+      objectReference: {fileID: 100000, guid: d4ecfb7a588ce5e49a3fbdaef52bc681, type: 3}
+    - target: {fileID: 4469896768659853722, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8530068463327476007, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: m_Text
+      value: Buy - 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8530068463347957032, guid: d6182911ef0c22241b955c865785dc77, type: 3}
       propertyPath: m_RootOrder
       value: 2

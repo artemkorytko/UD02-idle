@@ -427,8 +427,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3766273017458210899}
-        m_TargetAssemblyTypeName: MyNameSpace.Point, Assembly-CSharp
-        m_MethodName: OnMoneyCollected
+        m_TargetAssemblyTypeName: MyNamespace.Point, Assembly-CSharp
+        m_MethodName: CollectMoney
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -733,7 +733,6 @@ MonoBehaviour:
   - {fileID: 100000, guid: 7cdad2bc38dcf7e46a9570c197ec44e6, type: 3}
   - {fileID: 100000, guid: e0828b8951ddb5742b21325602b044b8, type: 3}
   - {fileID: 100000, guid: 53ec1bd968802e14b997a32f25e4c11c, type: 3}
-  - {fileID: 100000, guid: 014a9adc62efe2c42ac5b24034755457, type: 3}
   - {fileID: 100000, guid: d4ecfb7a588ce5e49a3fbdaef52bc681, type: 3}
   buildingPoint: {fileID: 7823686464441580820}
 --- !u!1 &8530068463943261663

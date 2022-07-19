@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Cysharp.Threading.Tasks;
-
+using Unity.VisualScripting;
 
 
 namespace MyNamespace
@@ -11,6 +11,7 @@ namespace MyNamespace
     public class Point : MonoBehaviour
     {
         //всё, что видно игроку
+        private Level _level;
         private Text _moneyCounterTxt; 
         [SerializeField] private Button buyButton;
         private Text _buyButtonTxt;
@@ -20,60 +21,65 @@ namespace MyNamespace
         [SerializeField] private GameObject buildingPoint;
         private GameObject _currentBuilding;
         
-
-        private const float StockMoneyIncome = 1f;
+        private const float StockMoneyIncome = 3f;
         private float _moneyIncome;
-        private const float IncomMultiplier = 1.2f;
-        private int _incomTime = 5000;  //mSeconds
+        private float IncomMultiplier = 1.2f;
+        private int _incomTime = 2000;  //mSeconds
         private int _money;  //TODO сделать свойство
-        
-        public event Action<int> OnMoneyCollected;
-
-        
         public int Money 
         { 
             get {return _money;}
             set { _money = value;}
         }
-        
-        private const float PointPrice = 20f;
-        
+        private int PointPrice = 20;
+        private int _upgradePrice;
+        private float _upgradePriceMultiplier = 6;
+        public event Action<int> OnMoneyChanged;
+
 
         public void Initialize()
         {
+            _level = GetComponentInParent<Level>();
             _moneyIncome = StockMoneyIncome;
             _moneyCounterTxt = collectButton.gameObject.GetComponentInChildren<Counter>().text;
             _buyButtonTxt = buyButton.GetComponentInChildren<Text>();
-            _buyButtonTxt.text = $"Buy - {StockPrice}";
+            _buyButtonTxt.text = $"Buy - {PointPrice}";
             upgradeButton.gameObject.SetActive(false);
             collectButton.gameObject.SetActive(false);
-            _currentBuilding = buildingStatesModels[0];
-            buildingStatesModels.Remove(_currentBuilding);
-            Instantiate(_currentBuilding, buildingPoint.transform);
-            _currentBuilding.transform.position = Vector3.zero;
+            _currentBuilding = Instantiate(buildingStatesModels[0], buildingPoint.transform).gameObject;
+            buildingStatesModels.Remove(buildingStatesModels[0]);
+            _currentBuilding.transform.localPosition = Vector3.zero;
+            _upgradePrice = PointPrice / 10;
         }
         
 
         public void Buy()
-        {
-            if (PointPrice  )
+        { 
+            if (PointPrice <= _level.Money)
             {
-                
+                OnMoneyChanged?.Invoke(-PointPrice);
+                buyButton.interactable = false;
+                buyButton.gameObject.SetActive(false);
+                collectButton.gameObject.SetActive(true);
+                upgradeButton.gameObject.SetActive(true);
+                EarnMoney();
             }
-            buyButton.interactable = false;
-            buyButton.gameObject.SetActive(false);
-            collectButton.gameObject.SetActive(true);
-            upgradeButton.gameObject.SetActive(true);
-            EarnMoney();
+            else print("Недостаточно денег");
         }
         
         
         public void Upgrade()
         {
-            _currentBuilding = buildingStatesModels[0];
-            buildingStatesModels.Remove(_currentBuilding);
-            _moneyIncome *= IncomMultiplier;
-            //throw new Exception("Больше нет этапов развития");
+            if (buildingStatesModels.Count != 0 && _level.Money >= _upgradePrice)
+            {
+                OnMoneyChanged?.Invoke(-_upgradePrice);
+                _upgradePrice = (int)Math.Round(_upgradePrice * _upgradePriceMultiplier);
+                Destroy(_currentBuilding.gameObject);
+                _currentBuilding = Instantiate(buildingStatesModels[0], buildingPoint.transform);
+                buildingStatesModels.Remove(buildingStatesModels[0]);
+                _currentBuilding.transform.localPosition = Vector3.zero;
+                _moneyIncome *= IncomMultiplier;
+            }
         }
         
         
@@ -92,21 +98,14 @@ namespace MyNamespace
         }
 
 
-        public void CollectMoney()
+        public void CollectMoney()  // из-за инкапсуляции мы используем именно ивент
         {
             if (_money != 0)
-            {
-                int money = _money;
+            { 
+                OnMoneyChanged?.Invoke(_money);
                 _money = 0;
-                OnMoneyCollected?.Invoke(money);
+                _moneyCounterTxt.text = $"Collect {_money.ToString()}";
             }
         }
     }
 }
-
-
-//TODO Срочно поменять взаимодействие уровня с точкой с помощью делегатов и событий, так же подписать на событие точки наш UIManager;
-//TODO Почитать за Action, за ивенты ты уже читал
-//TODO Либо SingleTOn, либо костыли
-
-//TODO Connect Level to UIManager   !!!

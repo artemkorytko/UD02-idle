@@ -6,42 +6,44 @@ namespace MyNamespace
 {
     public class Level : MonoBehaviour
     {
+        private GameManager _gameManager;
         [SerializeField] private List<Point> points;
-        private UIManager _uIManager;
-        
-        
-        private bool _isInitialized;
-        private const int StockMoneyBalance = 20;
+        //[SerializeField] private UIManager uiManager;
+        private const int StockMoneyBalance = 60;
         private int _money;
-        public int Money { get; set; }
-        
-        
+        public int Money  //TODO
+        {
+            get
+            {
+                return _money;
+            }
+            set
+            {
+                _money = value;
+            }
+        }
+
+
+        private void Awake()
+        {
+            _gameManager = GetComponentInParent<GameManager>();
+        }
         public void Initialize()
         {
-            _uIManager = GameObject.Find("UIManager").GetComponent<UIManager>();
-            _uIManager.EditMoneyCounter(StockMoneyBalance);
+            _gameManager.uiManager.EditMoneyCounter(StockMoneyBalance);
+            _money = StockMoneyBalance;
             foreach (var point in points)
             {
-                _isInitialized = true;
                 point.Initialize();
-                point.OnMoneyCollected += GetMoney;
-                point.OnMoneyCollected += _uIManager.EditMoneyCounter;
+                point.OnMoneyChanged += ChangeMoney;
             }
         }
 
 
-        private void Update()      //TODO May be add an Action
-        {
-            if (_isInitialized)
-            {
-                _uIManager.EditMoneyCounter(_money);
-            }
-        }
-
-
-        private void GetMoney(int money)
+        private void ChangeMoney(int money)
         {
             _money += money;
+            _gameManager.uiManager.EditMoneyCounter(_money);
         }
     }
 }
