@@ -269,6 +269,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startButton: {fileID: 1357088506}
   uiManager: {fileID: 1840279498}
+  _saveSystem: {fileID: 1870068725}
 --- !u!1 &138014306
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,7 +362,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8530068463347957032, guid: d6182911ef0c22241b955c865785dc77, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.33
+      value: 11.16
       objectReference: {fileID: 0}
     - target: {fileID: 8530068463347957032, guid: d6182911ef0c22241b955c865785dc77, type: 3}
       propertyPath: m_LocalPosition.y
@@ -428,13 +429,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1012280277236765988}
     m_Modifications:
+    - target: {fileID: 3766273017458210899, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: buildingStatesModels.Array.data[0]
+      value: 
+      objectReference: {fileID: 100000, guid: c8c0ac4c680f7704691118a770df51ba, type: 3}
+    - target: {fileID: 3766273017458210899, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: buildingStatesModels.Array.data[1]
+      value: 
+      objectReference: {fileID: 100000, guid: 9f122409af2c3464286d66eb2f28d8a3, type: 3}
+    - target: {fileID: 3766273017458210899, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: buildingStatesModels.Array.data[2]
+      value: 
+      objectReference: {fileID: 100000, guid: 89dc16182088c0e469111bbd0406a344, type: 3}
+    - target: {fileID: 3766273017458210899, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: buildingStatesModels.Array.data[3]
+      value: 
+      objectReference: {fileID: 100000, guid: e7ba6850887ae694a970af5f171fa6d5, type: 3}
     - target: {fileID: 8530068463347957032, guid: d6182911ef0c22241b955c865785dc77, type: 3}
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8530068463347957032, guid: d6182911ef0c22241b955c865785dc77, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 8.63
       objectReference: {fileID: 0}
     - target: {fileID: 8530068463347957032, guid: d6182911ef0c22241b955c865785dc77, type: 3}
       propertyPath: m_LocalPosition.y
@@ -901,7 +918,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8530068463347957032, guid: d6182911ef0c22241b955c865785dc77, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.1
+      value: 3.9299998
       objectReference: {fileID: 0}
     - target: {fileID: 8530068463347957032, guid: d6182911ef0c22241b955c865785dc77, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1270,6 +1287,49 @@ MonoBehaviour:
   mainMenuScreen: {fileID: 1690540228}
   gameScreen: {fileID: 15084313}
   moneyCounter: {fileID: 138014308}
+--- !u!1 &1870068724
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1870068726}
+  - component: {fileID: 1870068725}
+  m_Layer: 0
+  m_Name: SaveSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1870068725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870068724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 756b48c828c743da82dd05a190971f9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1870068726
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870068724}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.1976542, y: -0.13052389, z: 7.5192785}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1893815646 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3766273017458210899, guid: d6182911ef0c22241b955c865785dc77, type: 3}
@@ -1363,13 +1423,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1012280277236765988}
     m_Modifications:
+    - target: {fileID: 3766273017458210899, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: buildingStatesModels.Array.data[0]
+      value: 
+      objectReference: {fileID: 100000, guid: 60e2fb8b0024470498928881179977a0, type: 3}
+    - target: {fileID: 3766273017458210899, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: buildingStatesModels.Array.data[1]
+      value: 
+      objectReference: {fileID: 100000, guid: 7dda4c37a6b8d7c43b19baec2aabc157, type: 3}
+    - target: {fileID: 3766273017458210899, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: buildingStatesModels.Array.data[2]
+      value: 
+      objectReference: {fileID: 100000, guid: 773b447b5f21e56438236fcdf3b9b30a, type: 3}
+    - target: {fileID: 3766273017458210899, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: buildingStatesModels.Array.data[3]
+      value: 
+      objectReference: {fileID: 100000, guid: 18eabf3ca82ef3b43b69a08428f4efe5, type: 3}
     - target: {fileID: 8530068463347957032, guid: d6182911ef0c22241b955c865785dc77, type: 3}
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8530068463347957032, guid: d6182911ef0c22241b955c865785dc77, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.03
+      value: 15.95
       objectReference: {fileID: 0}
     - target: {fileID: 8530068463347957032, guid: d6182911ef0c22241b955c865785dc77, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1508,7 +1584,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1011755521825647540}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.3422184, y: -6.4038277, z: 61.603416}
+  m_LocalPosition: {x: 6.5, y: -6.4038277, z: 61.603416}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 1012280277236765988}

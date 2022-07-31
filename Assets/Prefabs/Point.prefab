@@ -248,7 +248,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 2, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6420019893648741214
 CanvasRenderer:
@@ -342,7 +342,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -1.25}
-  m_SizeDelta: {x: 4, y: 2}
+  m_SizeDelta: {x: 5, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4491774210444891465
 CanvasRenderer:
@@ -726,14 +726,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cae80b0b9f34674994bd42758360bfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingStatesModels:
+  - {fileID: 100000, guid: 53ec1bd968802e14b997a32f25e4c11c, type: 3}
+  - {fileID: 100000, guid: 7cdad2bc38dcf7e46a9570c197ec44e6, type: 3}
+  - {fileID: 100000, guid: e0828b8951ddb5742b21325602b044b8, type: 3}
+  - {fileID: 100000, guid: d4ecfb7a588ce5e49a3fbdaef52bc681, type: 3}
   buyButton: {fileID: 8530068462654328919}
   collectButton: {fileID: 7474362558266501830}
   upgradeButton: {fileID: 2201142027106705646}
-  buildingStatesModels:
-  - {fileID: 100000, guid: 7cdad2bc38dcf7e46a9570c197ec44e6, type: 3}
-  - {fileID: 100000, guid: e0828b8951ddb5742b21325602b044b8, type: 3}
-  - {fileID: 100000, guid: 53ec1bd968802e14b997a32f25e4c11c, type: 3}
-  - {fileID: 100000, guid: d4ecfb7a588ce5e49a3fbdaef52bc681, type: 3}
   buildingPoint: {fileID: 7823686464441580820}
 --- !u!1 &8530068463943261663
 GameObject:

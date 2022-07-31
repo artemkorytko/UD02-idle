@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -9,17 +10,12 @@ namespace MyNamespace
         private GameManager _gameManager;
         [SerializeField] private List<Point> points;
         //[SerializeField] private UIManager uiManager;
-        private const int StockMoneyBalance = 60;
         private int _money;
         public int Money  //TODO
         {
             get
             {
                 return _money;
-            }
-            set
-            {
-                _money = value;
             }
         }
 
@@ -28,15 +24,37 @@ namespace MyNamespace
         {
             _gameManager = GetComponentInParent<GameManager>();
         }
-        public void Initialize()
+        
+        
+        public void Initialize(GameData gameData)
         {
-            _gameManager.uiManager.EditMoneyCounter(StockMoneyBalance);
-            _money = StockMoneyBalance;
-            foreach (var point in points)
+            _money = gameData.money;
+            _gameManager.uiManager.EditMoneyCounter(_money);
+            
+            for (int i = 0; i < points.Count; i++)
             {
-                point.Initialize();
-                point.OnMoneyChanged += ChangeMoney;
+                points[i].Initialize(gameData.PointData[i]);
+                points[i].OnMoneyChanged += ChangeMoney;
             }
+        }
+
+
+        public GameData GetGameData()
+        {
+            GameData gameData = new GameData(points.Count, _money, GetPointsData());
+            return gameData;
+        }
+        
+        
+        public List<PointData> GetPointsData()
+        {
+            List<PointData> pointsData = new List<PointData>();
+            for (int i = 0; i < points.Count; i++)
+            {
+                pointsData.Add(points[i].GetPointData());
+            }
+
+            return pointsData;
         }
 
 
