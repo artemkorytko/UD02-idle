@@ -27,27 +27,26 @@ namespace MyNamespace
             formatter.Serialize(dataStream, gameData);
             //сохранили в текстовый документ дату
             dataStream.Close();
-            print("всё сохранили");
         }
 
         
         public GameData LoadData() 
         {
-            // if (File.Exists(_savePath))
-            // {
-            //     print("зашли в существующее сохранение");
-            //     //здесь же надо дату загрузить в игру ( десериализовать )
-            //     FileStream dataStream = new FileStream(_savePath, FileMode.Open);
-            //     BinaryFormatter formatter = new BinaryFormatter();
-            //     // десериализуем и неявно преобразовываем дату в gameData
-            //     GameData data = formatter.Deserialize(dataStream) as GameData;
-            //     dataStream.Close();
-            //     return data;
-            // }
-            // else
-            // {
+             if (File.Exists(_savePath))
+             {
+                 print("зашли в существующее сохранение");
+                 //здесь же надо дату загрузить в игру ( десериализовать )
+                 FileStream dataStream = new FileStream(_savePath, FileMode.Open);
+                 BinaryFormatter formatter = new BinaryFormatter();
+                 // десериализуем и неявно преобразовываем дату в gameData
+                 GameData data = formatter.Deserialize(dataStream) as GameData;
+                 dataStream.Close();
+                 return data;
+             }
+            else
+            {
                 return new GameData();
-            //}
+            }
         }
     }
 

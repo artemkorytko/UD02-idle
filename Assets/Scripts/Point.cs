@@ -18,7 +18,7 @@ namespace MyNamespace
         private int _buyPrice = 30;
         private float incomMultiplier = 1.2f;
         private int _incomTime = 2000;  //mSeconds
-        private float _upgradePriceMultiplier = 5;
+        private float _upgradePriceMultiplier = 1.7f;
         [SerializeField] private List<GameObject> buildingStatesModels;
 
 
@@ -28,10 +28,10 @@ namespace MyNamespace
         private Text _buyButtonTxt;
         [SerializeField] private Button collectButton;
         [SerializeField] private Button upgradeButton;
-        private int upgradeLevel = 0;
         [SerializeField] private GameObject buildingPoint;
         
         
+        private int _upgradeLevel;
         private GameObject _currentBuilding;
         private bool _isUnlocked = false;
         private int _upgradePrice;
@@ -56,6 +56,9 @@ namespace MyNamespace
             _level = GetComponentInParent<Level>();
             _collectButtonText = collectButton.gameObject.GetComponentInChildren<Counter>().text;
             _buyButtonTxt = buyButton.GetComponentInChildren<Text>();
+            _upgradePrice = (int)Math.Round(_buyPrice * _upgradePriceMultiplier);
+            _moneyIncome = _stockMoneyIncome;
+
         }
         
         
@@ -73,19 +76,18 @@ namespace MyNamespace
                 _currentBuilding.transform.localPosition = Vector3.zero;
                 for (int i = 0; i < pointData.UpgradeLevel; i++)
                 {
-                    Upgrade();
+                    print("апгрейд");
+                    InitUpgrade();
                 }
             }
             else
             {
                 upgradeButton.gameObject.SetActive(false);
                 collectButton.gameObject.SetActive(false);
-                upgradeLevel = 0;
+                _upgradeLevel = 0;
                 _buyButtonTxt.text = $"Buy - {_buyPrice}";
-                _moneyIncome = _stockMoneyIncome;
                 _currentBuilding = Instantiate(buildingStatesModels[0], buildingPoint.transform).gameObject;
                 _currentBuilding.transform.localPosition = Vector3.zero;
-                print("первое здание создали");
             }
         }
         
@@ -109,25 +111,36 @@ namespace MyNamespace
 
         public PointData GetPointData()
         {
-            PointData pointData = new PointData(_isUnlocked, Money, upgradeLevel);
+            print(_upgradeLevel);
+            PointData pointData = new PointData(_isUnlocked, Money, _upgradeLevel);
             return pointData;
         }
-        
-        
+
+
+        private void InitUpgrade()
+        {
+            _upgradeLevel++;
+            _upgradePrice = (int)Math.Round(_upgradePrice * _upgradePriceMultiplier);
+            Destroy(_currentBuilding.gameObject);
+            _currentBuilding = Instantiate(buildingStatesModels[_upgradeLevel], buildingPoint.transform);
+            _currentBuilding.transform.localPosition = Vector3.zero;
+            _moneyIncome = (int)Math.Round(_moneyIncome * incomMultiplier);
+        }
+
+
         public void Upgrade()
         {
-            if (upgradeLevel < buildingStatesModels.Count  && _level.Money >= _upgradePrice)
+            if (_upgradeLevel < buildingStatesModels.Count -1  && _level.Money >= _upgradePrice)
             {
-                print("Улучшили");
                 OnMoneyChanged?.Invoke(-_upgradePrice);
+                _upgradeLevel++;
                 _upgradePrice = (int)Math.Round(_upgradePrice * _upgradePriceMultiplier);
                 Destroy(_currentBuilding.gameObject);
-                _currentBuilding = Instantiate(buildingStatesModels[upgradeLevel], buildingPoint.transform);
+                _currentBuilding = Instantiate(buildingStatesModels[_upgradeLevel], buildingPoint.transform);
                 _currentBuilding.transform.localPosition = Vector3.zero;
                 _moneyIncome = (int)Math.Round(_moneyIncome * incomMultiplier);
-                upgradeLevel++;
             }
-            else if(upgradeLevel >= buildingStatesModels.Count)
+            else if(_upgradeLevel == buildingStatesModels.Count -1)
             {
                 Text buttonText = upgradeButton.GetComponentInChildren<Text>();
                 buttonText.text = "max";

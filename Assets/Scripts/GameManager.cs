@@ -29,7 +29,6 @@ namespace MyNamespace
         {
             uiManager.ShowGameScreen();
             _level.gameObject.SetActive(true);
-            if (_saveSystem == null) print("нет сейв системы");
             _gameData = _saveSystem.LoadData();
             _level.Initialize(_gameData);
         }
@@ -38,7 +37,6 @@ namespace MyNamespace
         private void OnApplicationQuit()
         {
             SaveData();
-            Application.Quit();
         }
 
         public void SaveData()

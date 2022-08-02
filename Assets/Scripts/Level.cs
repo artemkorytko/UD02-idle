@@ -41,7 +41,8 @@ namespace MyNamespace
 
         public GameData GetGameData()
         {
-            GameData gameData = new GameData(points.Count, _money, GetPointsData());
+            List < PointData > pointsData = GetPointsData();
+            GameData gameData = new GameData(points.Count, _money, pointsData);
             return gameData;
         }
         
