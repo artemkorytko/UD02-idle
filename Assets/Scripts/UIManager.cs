@@ -8,7 +8,6 @@ namespace MyNamespace
         [SerializeField] private GameManager gameManager;
         [SerializeField] private GameObject mainMenuScreen;
         [SerializeField] private GameObject gameScreen;
-        [SerializeField] private Text moneyCounter;
         private GameObject _currentScreen;
 
 
@@ -33,12 +32,6 @@ namespace MyNamespace
             _currentScreen.SetActive(false);
             _currentScreen = mainMenuScreen;
             _currentScreen.SetActive(true);
-        }
-
-
-        public void EditMoneyCounter( int money)
-        {
-            moneyCounter.text = money.ToString();
         }
     }
 }

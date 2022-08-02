@@ -54,7 +54,6 @@ namespace MyNamespace
         private void Awake()
         {
             _level = GetComponentInParent<Level>();
-            _collectButtonText = collectButton.gameObject.GetComponentInChildren<Counter>().text;
             _buyButtonTxt = buyButton.GetComponentInChildren<Text>();
             _upgradePrice = (int)Math.Round(_buyPrice * _upgradePriceMultiplier);
             _moneyIncome = _stockMoneyIncome;
