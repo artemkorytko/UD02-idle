@@ -57,7 +57,7 @@ namespace MyNamespace
             _buyButtonTxt = buyButton.GetComponentInChildren<Text>();
             _upgradePrice = (int)Math.Round(_buyPrice * _upgradePriceMultiplier);
             _moneyIncome = _stockMoneyIncome;
-
+            _collectButtonText = collectButton.GetComponentInChildren<Text>();
         }
         
         
