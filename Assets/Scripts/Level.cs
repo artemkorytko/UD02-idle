@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,34 +7,27 @@ namespace MyNamespace
 {
     public class Level : MonoBehaviour
     {
-        private GameManager _gameManager;
         [SerializeField] private Text moneyCounter;
         [SerializeField] private List<Point> points;
-        //[SerializeField] private UIManager uiManager;
         private int _money;
-        public int Money  //TODO
+        public int Money 
         {
             get
             {
                 return _money;
             }
         }
+        
 
 
-        private void Awake()
-        {
-            _gameManager = GetComponentInParent<GameManager>();
-        }
-        
-        
         public void Initialize(GameData gameData)
         {
             _money = gameData.money;
             moneyCounter.text = _money.ToString();
-            
+
             for (int i = 0; i < points.Count; i++)
             {
-                points[i].Initialize(gameData.PointData[i]);
+                points[i].Initialize(gameData.pointData[i]);
                 points[i].OnMoneyChanged += ChangeMoney;
             }
         }
@@ -69,4 +61,3 @@ namespace MyNamespace
     }
 }
 
-//TODO Connect Level to UIManager

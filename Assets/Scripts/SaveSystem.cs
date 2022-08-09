@@ -27,22 +27,23 @@ namespace MyNamespace
             formatter.Serialize(dataStream, gameData);
             //сохранили в текстовый документ дату
             dataStream.Close();
+            print(gameData.money);
         }
 
         
-        public GameData LoadData() 
+        public GameData LoadData()
         {
-             if (File.Exists(_savePath))
-             {
-                 print("зашли в существующее сохранение");
-                 //здесь же надо дату загрузить в игру ( десериализовать )
-                 FileStream dataStream = new FileStream(_savePath, FileMode.Open);
-                 BinaryFormatter formatter = new BinaryFormatter();
-                 // десериализуем и неявно преобразовываем дату в gameData
-                 GameData data = formatter.Deserialize(dataStream) as GameData;
-                 dataStream.Close();
-                 return data;
-             }
+            if (File.Exists(_savePath))
+            {
+                print("зашли в существующее сохранение");
+                //здесь же надо дату загрузить в игру ( десериализовать )
+                FileStream dataStream = new FileStream(_savePath, FileMode.Open);
+                BinaryFormatter formatter = new BinaryFormatter();
+                // десериализуем и неявно преобразовываем дату в gameData
+                GameData data = formatter.Deserialize(dataStream) as GameData;
+                dataStream.Close();
+                return data;
+            }
             else
             {
                 return new GameData();
@@ -59,22 +60,22 @@ namespace MyNamespace
         //задел под drag and drop строительство
         public int countOfBuildings = 4;
         public int money = 60;             //
-        public List<PointData> PointData;
+        public List<PointData> pointData;
 
         public GameData()  //конструктор                                          
         {
-            
-            PointData = new List<PointData>();
+            money = 60;
+            pointData = new List<PointData>();
             for (int i = 0; i < countOfBuildings; i++)
             {
-                PointData.Add(new PointData());
+                pointData.Add(new PointData());
             }
         }
         public GameData(int countOfBuildings, int money, List<PointData> pointData)
         {
             this.countOfBuildings = countOfBuildings;
             this.money = money;
-            PointData = pointData;
+            this.pointData = pointData;
         }
     }
 
@@ -91,7 +92,7 @@ namespace MyNamespace
         {
             IsUnlocked = false;
             UpgradeLevel = 0;
-            Money = 60;
+            Money = 0;
         }
         public PointData(bool isUnlocked, int money, int upgradeLevel)
         {

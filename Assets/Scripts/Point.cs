@@ -94,7 +94,7 @@ namespace MyNamespace
         public void Buy()
         {
             _isUnlocked = true;
-            _upgradePrice = _buyPrice / 10;
+            _upgradePrice = _buyPrice;
             if (_buyPrice <= _level.Money)
             {
                 OnMoneyChanged?.Invoke(-_buyPrice);
@@ -110,7 +110,6 @@ namespace MyNamespace
 
         public PointData GetPointData()
         {
-            print(_upgradeLevel);
             PointData pointData = new PointData(_isUnlocked, Money, _upgradeLevel);
             return pointData;
         }

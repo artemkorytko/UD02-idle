@@ -5,7 +5,6 @@ namespace MyNamespace
 {
     public class UIManager : MonoBehaviour
     {
-        [SerializeField] private GameManager gameManager;
         [SerializeField] private GameObject mainMenuScreen;
         [SerializeField] private GameObject gameScreen;
         private GameObject _currentScreen;
