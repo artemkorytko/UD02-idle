@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,37 +7,63 @@ namespace MyNamespace
 {
     public class GameManager : MonoBehaviour
     {
+        public static GameManager instance;
+
+        public static GameManager Instance;
         private Level _level;
         [SerializeField] private Button startButton;
         [SerializeField] private Button newGameButton;
-        public UIManager uiManager;
-        [SerializeField] private SaveSystem _saveSystem;
+        private UIManager uiManager;
+        [SerializeField] private SaveSystem saveSystem;
+        
         private GameData _gameData;
         
+        
 
-        private void Awake()
+        private void Awake() 
         {
-            uiManager = FindObjectOfType<UIManager>();
+            if (instance == null) 
+            { 
+                instance = this; // Задаем ссылку на экземпляр объекта
+            } 
+            else if(instance == this)// Экземпляр объекта уже существует на сцене
+            { 
+                Destroy(gameObject); // Удаляем объект
+            }
+            DontDestroyOnLoad(gameObject);
+        }
+
+
+        private void Start()
+        {
+            Initialize();
+        }
+
+        private void Initialize()
+        {
+            uiManager = UIManager.instance;
             _level = GetComponentInChildren<Level>();
+            if (_level == null)
+            {
+                Debug.Log("Level null");
+            }
             _level.gameObject.SetActive(false);
             startButton.onClick.AddListener( () => LoadGame());
             newGameButton.onClick.AddListener(() => NewGame());
-            uiManager.Initialize();
         }
         
         
         //Button's methods
-        public void LoadGame()
+        private void LoadGame()
         {
             uiManager.ShowGameScreen();
             _level.gameObject.SetActive(true);
-            _gameData = _saveSystem.LoadData();
-            print(_gameData.money);
+            _gameData = saveSystem.LoadData();
             _level.Initialize(_gameData);
         }
 
 
-        public void NewGame()
+        private void NewGame()
         {
             uiManager.ShowGameScreen();
             _level.gameObject.SetActive(true);
@@ -47,20 +72,20 @@ namespace MyNamespace
         }
 
         
-        // private void OnApplicationQuit()
-        // {
-        //     SaveData();
-        // }
-
-        private void OnApplicationFocus(bool hasFocus)
+        private void OnApplicationQuit()
         {
             SaveData();
         }
 
+        // private void OnApplicationFocus(bool hasFocus)
+        // {
+        //     SaveData();
+        // }
+
         public void SaveData()
         {
             _gameData = _level.GetGameData();
-            _saveSystem.SaveData(_gameData);
+            saveSystem.SaveData(_gameData);// нулл
         }
     }
 }

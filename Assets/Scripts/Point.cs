@@ -3,23 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Cysharp.Threading.Tasks;
+using MyNamespace.Configs;
 
 
 namespace MyNamespace
 {
     public class Point : MonoBehaviour
     {
-        // Прокидывание соединений
+        // TODO Прокидывание соединений
         private Level _level;
         
         
-        // Всё с конфига  //TODO
-        private int _stockMoneyIncome = 3;
-        private int _buyPrice = 30;
-        private float incomMultiplier = 1.2f;
-        private int _incomTime = 2000;  //mSeconds
-        private float _upgradePriceMultiplier = 1.7f;
-        [SerializeField] private List<GameObject> buildingStatesModels;
+        [SerializeField] private PointConfig pointConfig;
+        private int _stockMoneyIncome;
+        private int _buyPrice;
+        private float incomMultiplier;
+        private int _incomTime;  
+        private float _upgradePriceMultiplier;
+        private List<GameObject> buildingStatesModels;
 
 
         //всё, что видно игроку
@@ -36,7 +37,7 @@ namespace MyNamespace
         private bool _isUnlocked = false;
         private int _upgradePrice;
         private int _moneyIncome;
-        private int _money;  //TODO сделать свойство
+        private int _money;  
         private int Money
         { 
             get {return _money;}
@@ -49,10 +50,16 @@ namespace MyNamespace
         public event Action<int> OnMoneyChanged;
 
         
-        
 
         private void Awake()
-        {
+        { 
+            _stockMoneyIncome = pointConfig.StockMoneyIncome;
+            _buyPrice = pointConfig.BuyPrice;
+            incomMultiplier = pointConfig.IncomMultiplier;
+            _incomTime = pointConfig.IncomeTime;  
+            _upgradePriceMultiplier = pointConfig.UpgradePriceMultiplier;
+            buildingStatesModels = pointConfig.BuildingModels;
+            
             _level = GetComponentInParent<Level>();
             _buyButtonTxt = buyButton.GetComponentInChildren<Text>();
             _upgradePrice = (int)Math.Round(_buyPrice * _upgradePriceMultiplier);
@@ -75,7 +82,6 @@ namespace MyNamespace
                 _currentBuilding.transform.localPosition = Vector3.zero;
                 for (int i = 0; i < pointData.UpgradeLevel; i++)
                 {
-                    print("апгрейд");
                     InitUpgrade();
                 }
             }

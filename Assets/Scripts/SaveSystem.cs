@@ -27,7 +27,6 @@ namespace MyNamespace
             formatter.Serialize(dataStream, gameData);
             //сохранили в текстовый документ дату
             dataStream.Close();
-            print(gameData.money);
         }
 
         

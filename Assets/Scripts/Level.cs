@@ -1,13 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 
 namespace MyNamespace
 {
     public class Level : MonoBehaviour
     {
-        [SerializeField] private Text moneyCounter;
         [SerializeField] private List<Point> points;
         private int _money;
         public int Money 
@@ -17,13 +15,15 @@ namespace MyNamespace
                 return _money;
             }
         }
+        private UIManager uiManager;
+
         
-
-
+        
         public void Initialize(GameData gameData)
         {
+            uiManager = UIManager.instance;
             _money = gameData.money;
-            moneyCounter.text = _money.ToString();
+            uiManager.MoneyCounterText.text = _money.ToString();
 
             for (int i = 0; i < points.Count; i++)
             {
@@ -56,7 +56,7 @@ namespace MyNamespace
         private void ChangeMoney(int money)
         {
             _money += money;
-            moneyCounter.text = _money.ToString();
+            uiManager.MoneyCounterText.text = _money.ToString();
         }
     }
 }

@@ -269,8 +269,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startButton: {fileID: 1357088506}
   newGameButton: {fileID: 216156847}
-  uiManager: {fileID: 1840279498}
-  _saveSystem: {fileID: 1870068725}
+  saveSystem: {fileID: 1870068725}
 --- !u!1 &138014306
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,6 +356,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1012280277236765988}
     m_Modifications:
+    - target: {fileID: 3766273017458210899, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: pointConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: 2d1613fe6ba5a4344a6201fb36c9a24f, type: 2}
     - target: {fileID: 8530068463347957032, guid: d6182911ef0c22241b955c865785dc77, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1034,69 +1037,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1357088504}
   m_CullTransparentMesh: 1
---- !u!1 &1386023623
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1386023625}
-  - component: {fileID: 1386023624}
-  m_Layer: 0
-  m_Name: SceneContext
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &1386023624
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1386023623}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89715ad69b973a14899afa2c6730b30b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _scriptableObjectInstallers:
-  - {fileID: 11400000, guid: 4f5012b1c92934c489422e589af31008, type: 2}
-  _monoInstallers: []
-  _installerPrefabs: []
-  _autoRun: 1
-  OnPreInstall:
-    m_PersistentCalls:
-      m_Calls: []
-  OnPostInstall:
-    m_PersistentCalls:
-      m_Calls: []
-  OnPreResolve:
-    m_PersistentCalls:
-      m_Calls: []
-  OnPostResolve:
-    m_PersistentCalls:
-      m_Calls: []
-  _parentNewObjectsUnderSceneContext: 0
-  _contractNames: []
-  _parentContractNames: []
---- !u!4 &1386023625
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1386023623}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1413333004
 GameObject:
   m_ObjectHideFlags: 0
@@ -1580,6 +1520,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenuScreen: {fileID: 1690540228}
   gameScreen: {fileID: 15084313}
+  moneyCounterText: {fileID: 138014308}
 --- !u!1 &1870068724
 GameObject:
   m_ObjectHideFlags: 0
@@ -1716,6 +1657,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1012280277236765988}
     m_Modifications:
+    - target: {fileID: 3766273017458210899, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: pointConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: 80a739b3ba354fb4ca6b1980045544c9, type: 2}
     - target: {fileID: 3766273017458210899, guid: d6182911ef0c22241b955c865785dc77, type: 3}
       propertyPath: buildingStatesModels.Array.data[0]
       value: 
@@ -1959,7 +1904,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef6a3f77e558af149bb7b6418fc1415a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moneyCounter: {fileID: 138014308}
   points:
   - {fileID: 453714624}
   - {fileID: 1893815646}

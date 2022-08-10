@@ -16,11 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 8b5389e71b9472b4eadb4430955e6e1c
-  m_SerializeEntries:
-  - m_GUID: b25d7aabd5736314a896e0814c3bcf6c
-    m_Address: Assets/Installers/UntitledInstaller.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 2135a042edaade24ca0aef406320375e, type: 2}
   m_SchemaSet:
