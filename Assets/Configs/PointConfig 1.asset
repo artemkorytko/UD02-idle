@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3593bb791efb4ee88c2aa5a236787a0b, type: 3}
+  m_Name: PointConfig 1
+  m_EditorClassIdentifier: 
+  stockMoneyIncome: 5
+  buyPrice: 30
+  incomMultiplier: 1.6
+  incomeTime: 6000
+  upgradePriceMultiplier: 1.8
+  buildingModels:
+  - {fileID: 100000, guid: daa26117f0404134c9c72fc353a5da52, type: 3}
+  - {fileID: 100000, guid: e43100a9fe91d67418353a7f32c965b8, type: 3}
+  - {fileID: 100000, guid: 7dda4c37a6b8d7c43b19baec2aabc157, type: 3}
+  - {fileID: 100000, guid: ae9f073041fc5d24e988970ad76626d2, type: 3}
+  - {fileID: 100000, guid: 3d92f881e27fa984bbe291e539cfda8d, type: 3}
+  - {fileID: 100000, guid: 69405b49d7249234ab072de8bdfc9ea3, type: 3}
