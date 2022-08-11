@@ -71,19 +71,20 @@ namespace MyNamespace
             _level.Initialize(_gameData);
         }
 
-        
+    #if UNITY_EDITOR
         private void OnApplicationQuit()
         {
             SaveData();
         }
-
-        // private void OnApplicationFocus(bool hasFocus)
-        // {
-        //     SaveData();
-        // }
-
+    #elif UNITY_ANDROID || UNITY_IOS
+        private void OnApplicationFocus(bool hasFocus)
+        {
+            SaveData();
+        }
+    #endif
         public void SaveData()
         {
+   
             _gameData = _level.GetGameData();
             saveSystem.SaveData(_gameData);// нулл
         }
