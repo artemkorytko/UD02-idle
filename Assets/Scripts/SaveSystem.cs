@@ -34,7 +34,6 @@ namespace MyNamespace
         {
             if (File.Exists(_savePath))
             {
-                print("зашли в существующее сохранение");
                 //здесь же надо дату загрузить в игру ( десериализовать )
                 FileStream dataStream = new FileStream(_savePath, FileMode.Open);
                 BinaryFormatter formatter = new BinaryFormatter();

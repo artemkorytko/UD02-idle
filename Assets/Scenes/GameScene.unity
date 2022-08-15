@@ -267,7 +267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f56da79bf6a3b6f4c8f0e2fad781dd46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startButton: {fileID: 1357088506}
+  playButton: {fileID: 0}
   newGameButton: {fileID: 216156847}
   saveSystem: {fileID: 1870068725}
 --- !u!1 &138014306
@@ -360,6 +360,10 @@ PrefabInstance:
       propertyPath: pointConfig
       value: 
       objectReference: {fileID: 11400000, guid: 2d1613fe6ba5a4344a6201fb36c9a24f, type: 2}
+    - target: {fileID: 3766273017458210899, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: pointSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: 092fcfcf41e967046b63edbbe200e0e9, type: 2}
     - target: {fileID: 8530068463347957032, guid: d6182911ef0c22241b955c865785dc77, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -555,6 +559,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1012280277236765988}
     m_Modifications:
     - target: {fileID: 3766273017458210899, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: pointSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: 092fcfcf41e967046b63edbbe200e0e9, type: 2}
+    - target: {fileID: 3766273017458210899, guid: d6182911ef0c22241b955c865785dc77, type: 3}
       propertyPath: buildingStatesModels.Array.data[0]
       value: 
       objectReference: {fileID: 100000, guid: c8c0ac4c680f7704691118a770df51ba, type: 3}
@@ -657,6 +665,7 @@ GameObject:
   m_Component:
   - component: {fileID: 867295429}
   - component: {fileID: 867295428}
+  - component: {fileID: 867295430}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -676,7 +685,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89715ad69b973a14899afa2c6730b30b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scriptableObjectInstallers: []
+  _scriptableObjectInstallers:
+  - {fileID: 11400000, guid: 190c6cb22e508664c89fbfd9e8e0ce7a, type: 2}
   _monoInstallers: []
   _installerPrefabs: []
   _autoRun: 1
@@ -709,6 +719,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &867295430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867295427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23de7c7c0051ea64982179d0088210c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiManager: {fileID: 1840279498}
 --- !u!1 &952479726
 GameObject:
   m_ObjectHideFlags: 0
@@ -1208,6 +1231,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1012280277236765988}
     m_Modifications:
+    - target: {fileID: 3766273017458210899, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: pointSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: 2d1613fe6ba5a4344a6201fb36c9a24f, type: 2}
     - target: {fileID: 8530068463347957032, guid: d6182911ef0c22241b955c865785dc77, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -1724,6 +1751,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 80a739b3ba354fb4ca6b1980045544c9, type: 2}
     - target: {fileID: 3766273017458210899, guid: d6182911ef0c22241b955c865785dc77, type: 3}
+      propertyPath: pointSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: 80a739b3ba354fb4ca6b1980045544c9, type: 2}
+    - target: {fileID: 3766273017458210899, guid: d6182911ef0c22241b955c865785dc77, type: 3}
       propertyPath: buildingStatesModels.Array.data[0]
       value: 
       objectReference: {fileID: 100000, guid: 60e2fb8b0024470498928881179977a0, type: 3}
@@ -1869,6 +1900,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1012280277236765988}
   - component: {fileID: 1101913353386982134}
+  - component: {fileID: 1012280277236765992}
   m_Layer: 0
   m_Name: Level
   m_TagString: Untagged
@@ -1876,6 +1908,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1012280277236765992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012280277236765991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4be099a2b74850b04ee652796618e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1016935654093311588
 Transform:
   m_ObjectHideFlags: 0

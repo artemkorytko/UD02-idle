@@ -7,6 +7,8 @@ namespace MyNamespace.Configs
     public class LevelSettings : ScriptableObject
     {
         [SerializeField] private int money;
-        [SerializeField] private List<Point> points;
+        //[SerializeField] private List<Point> points;
+
+        public int Money => money;
     }
 }

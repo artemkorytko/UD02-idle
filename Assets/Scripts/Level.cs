@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 
 namespace MyNamespace
@@ -15,16 +16,20 @@ namespace MyNamespace
                 return _money;
             }
         }
-        private UIManager uiManager;
 
+        [Inject] private UIManager uiManager;
+        //[Inject]
+        // public void Construct(UIManager uiManager)
+        // {
+        //     uiManager.MoneyCounterText.text = _money.ToString();
+        // }
+        
         
         
         public void Initialize(GameData gameData)
         {
-            uiManager = UIManager.instance;
             _money = gameData.money;
             uiManager.MoneyCounterText.text = _money.ToString();
-
             for (int i = 0; i < points.Count; i++)
             {
                 points[i].Initialize(gameData.pointData[i]);

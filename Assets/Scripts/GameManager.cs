@@ -1,37 +1,22 @@
 using UnityEngine;
 using UnityEngine.UI;
-
+using Zenject;
 
 
 namespace MyNamespace
 {
     public class GameManager : MonoBehaviour
     {
-        public static GameManager instance;
-
-        public static GameManager Instance;
+     
+        [Inject] private UIManager uiManager;
         private Level _level;
-        [SerializeField] private Button startButton;
+        [SerializeField] private Button playButton;
         [SerializeField] private Button newGameButton;
-        private UIManager uiManager;
         [SerializeField] private SaveSystem saveSystem;
         
         private GameData _gameData;
         
         
-
-        private void Awake() 
-        {
-            if (instance == null) 
-            { 
-                instance = this; // Задаем ссылку на экземпляр объекта
-            } 
-            else if(instance == this)// Экземпляр объекта уже существует на сцене
-            { 
-                Destroy(gameObject); // Удаляем объект
-            }
-            DontDestroyOnLoad(gameObject);
-        }
 
 
         private void Start()
@@ -41,14 +26,13 @@ namespace MyNamespace
 
         private void Initialize()
         {
-            uiManager = UIManager.instance;
             _level = GetComponentInChildren<Level>();
             if (_level == null)
             {
                 Debug.Log("Level null");
             }
             _level.gameObject.SetActive(false);
-            startButton.onClick.AddListener( () => LoadGame());
+            playButton.onClick.AddListener( () => LoadGame());
             newGameButton.onClick.AddListener(() => NewGame());
         }
         

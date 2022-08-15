@@ -5,7 +5,7 @@ namespace MyNamespace.Configs
     [CreateAssetMenu(fileName = "ProjectConfig", menuName = "Configs/ProjectConfig", order = 0)]
     public class ProjectConfig : ScriptableObject
     {
-        //всё для проекта
+        //всё для проекта, что-то совсем глобальное
         [SerializeField] private int targetFPS;
         [SerializeField] private bool isMultyTouch;
 
@@ -13,6 +13,6 @@ namespace MyNamespace.Configs
 
         public bool IsMultyTouch => isMultyTouch;
         
-        //мб звук сделать
+        //мб громкость звука сделать
     }
 }

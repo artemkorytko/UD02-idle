@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace MyNamespace.Configs
 {
-    [CreateAssetMenu(fileName = "PointConfig", menuName = "Configs/PointConfig", order = 0)]
-    public class PointConfig : ScriptableObject
+    [CreateAssetMenu(fileName = "PointSettings", menuName = "Configs/PointSettings", order = 0)]
+    public class PointSettings : ScriptableObject
     {
         [SerializeField] private int stockMoneyIncome;
         [SerializeField] private int buyPrice;

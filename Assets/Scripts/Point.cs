@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Cysharp.Threading.Tasks;
 using MyNamespace.Configs;
+using Zenject;
 
 
 namespace MyNamespace
@@ -14,7 +15,7 @@ namespace MyNamespace
         private Level _level;
         
         
-        [SerializeField] private PointConfig pointConfig;
+        [SerializeField] private PointSettings pointSettings;
         private int _stockMoneyIncome;
         private int _buyPrice;
         private float incomMultiplier;
@@ -48,17 +49,17 @@ namespace MyNamespace
             }
         }
         public event Action<int> OnMoneyChanged;
-
         
+
 
         private void Awake()
         { 
-            _stockMoneyIncome = pointConfig.StockMoneyIncome;
-            _buyPrice = pointConfig.BuyPrice;
-            incomMultiplier = pointConfig.IncomMultiplier;
-            _incomTime = pointConfig.IncomeTime;  
-            _upgradePriceMultiplier = pointConfig.UpgradePriceMultiplier;
-            buildingStatesModels = pointConfig.BuildingModels;
+            _stockMoneyIncome = pointSettings.StockMoneyIncome;
+            _buyPrice = pointSettings.BuyPrice;
+            incomMultiplier = pointSettings.IncomMultiplier;
+            _incomTime = pointSettings.IncomeTime;  
+            _upgradePriceMultiplier = pointSettings.UpgradePriceMultiplier;
+            buildingStatesModels = pointSettings.BuildingModels;
             
             _level = GetComponentInParent<Level>();
             _buyButtonTxt = buyButton.GetComponentInChildren<Text>();
